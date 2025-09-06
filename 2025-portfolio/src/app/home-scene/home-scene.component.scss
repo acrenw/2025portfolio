@@ -1,0 +1,92 @@
+.game-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #856249;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.game-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+// popup styles
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
+.popup-window {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  min-height: 200px;
+  position: relative;
+}
+
+.popup-content {
+  padding: 20px;
+  color: #ecf0f1;
+  font-family: 'Arial', sans-serif;
+  
+  p {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.popup-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ecf0f1;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 8px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    color: #c0392b;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
