@@ -7,6 +7,12 @@
   <!-- Popup Text Window -->
   <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
     <div class="popup-window" (click)="$event.stopPropagation()">
+      <!-- Profile Image and Name Container -->
+      <div class="profile-container">
+        <img src="assets/images/player-profile.PNG" alt="Cera Wang" class="profile-image">
+        <div class="profile-name">Cera Wang</div>
+      </div>
+      
       <div class="popup-content">
         <button class="close-button" (click)="closePopup()">×</button>
         <div class="popup-text" [innerHTML]="getFormattedText()"></div>

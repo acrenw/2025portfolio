@@ -1,6 +1,78 @@
 <div class="page-container">
   <button class="close-button" (click)="goBack()" aria-label="Close page">×</button>
+  
   <div class="content">
-    <p>piano works!</p>
+    <h1 class="gallery-title">Music Things</h1>
+    
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'covers'"
+        (click)="setActiveTab('covers')">
+        Piano Covers
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'composed'"
+        (click)="setActiveTab('composed')">
+        Composed Pieces
+      </button>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+      <div 
+        *ngFor="let content of getFilteredContent()" 
+        class="content-item"
+        (click)="openModal(content)">
+        <img 
+          [src]="content.thumbnailUrl" 
+          [alt]="content.title"
+          class="content-thumbnail">
+        <div class="content-overlay">
+          <h3 class="content-title">{{ content.title }}</h3>
+          <div class="play-button" *ngIf="content.type === 'video'">▶</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Popup -->
+  <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()" aria-label="Close modal">×</button>
+      <div class="modal-body" *ngIf="selectedContent">
+        <!-- Video Content (YouTube iframe or direct video) -->
+        <ng-container *ngIf="selectedContent.type === 'video'">
+          <iframe 
+            *ngIf="getIsYouTubeSelected()"
+            [src]="getEmbedUrl(selectedContent.videoUrl!)" 
+            frameborder="0"
+            allowfullscreen
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            class="modal-video">
+          </iframe>
+          <video 
+            *ngIf="!getIsYouTubeSelected()"
+            [src]="selectedContent.videoUrl" 
+            controls
+            class="modal-video">
+            Your browser does not support the video tag.
+          </video>
+        </ng-container>
+        <!-- Image Content -->
+        <img 
+          *ngIf="selectedContent.type === 'image'"
+          [src]="selectedContent.imageUrl" 
+          [alt]="selectedContent.title"
+          class="modal-image">
+        <div class="modal-info">
+          <h2 class="modal-title">{{ selectedContent.title }}</h2>
+          <p class="modal-caption">{{ selectedContent.caption }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

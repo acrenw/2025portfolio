@@ -1,6 +1,84 @@
 <div class="page-container">
   <button class="close-button" (click)="goBack()" aria-label="Close page">×</button>
+  
   <div class="content">
-    <p>easel works!</p>
+    <h1 class="gallery-title">Art Gallery</h1>
+    
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'illustrations'"
+        (click)="setActiveTab('illustrations')">
+        Illustrations
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'designs'"
+        (click)="setActiveTab('designs')">
+        Designs
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === '3d-modelling'"
+        (click)="setActiveTab('3d-modelling')">
+        3D Modelling
+      </button>
+    </div>
+
+    <!-- Artwork Grid -->
+    <div class="artwork-grid">
+      <div 
+        *ngFor="let artwork of getFilteredArtworks()" 
+        class="artwork-item"
+        (click)="openModal(artwork)">
+        <img 
+          [src]="artwork.thumbnailUrl" 
+          [alt]="artwork.title"
+          class="artwork-image">
+        <div class="artwork-overlay">
+          <h3 class="artwork-title">{{ artwork.title }}</h3>
+          <div class="play-button" *ngIf="artwork.type === 'video'">▶</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Popup -->
+  <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()" aria-label="Close modal">×</button>
+      <div class="modal-body" *ngIf="selectedArtwork">
+        <!-- Video Content (YouTube iframe or direct video) -->
+        <ng-container *ngIf="selectedArtwork.type === 'video'">
+          <iframe 
+            *ngIf="getIsYouTubeSelected()"
+            [src]="getEmbedUrl(selectedArtwork.videoUrl!)" 
+            frameborder="0"
+            allowfullscreen
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            class="modal-video">
+          </iframe>
+          <video 
+            *ngIf="!getIsYouTubeSelected()"
+            [src]="selectedArtwork.videoUrl" 
+            controls
+            class="modal-video">
+            Your browser does not support the video tag.
+          </video>
+        </ng-container>
+        <!-- Image Content -->
+        <img 
+          *ngIf="selectedArtwork.type === 'image'"
+          [src]="selectedArtwork.imageUrl" 
+          [alt]="selectedArtwork.title"
+          class="modal-image">
+        <div class="modal-info">
+          <h2 class="modal-title">{{ selectedArtwork.title }}</h2>
+          <p class="modal-caption">{{ selectedArtwork.caption }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

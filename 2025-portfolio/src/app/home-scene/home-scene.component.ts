@@ -88,16 +88,16 @@ export class HomeSceneComponent implements OnInit, OnDestroy {
   private bgImage!: HTMLImageElement;
   private playerImage!: HTMLImageElement;
   private speechBubbleImage!: HTMLImageElement;
+  private profileImage!: HTMLImageElement;
   private imagesLoaded = 0;
-  private totalImages = 3;
+  private totalImages = 4;
   
   // popup text things
   public showPopup = false;
-  public popupText = `**Cera Wang:**
+  public popupText = `
+Hi! I'm Cera. I'm a ***Computer Engineering*** student at the ***University of Waterloo*** actively looking for jobs. Learn about me by clicking on any glowing object, or interacting with them using 'z' and using 'x' to exit! 
 
-Interact/learn about ME by clicking on any glowing object or interacting with them using 'z'! I'm a *Computer Engineering* student at the *University of Waterloo* actively looking for jobs.
-
-Contact me:
+You can contact me at:
 c252wang@uwaterloo.ca | +1 226-698-7985
 
 P.S. You can find more technical details on my computer.`;
@@ -154,6 +154,11 @@ P.S. You can find more technical details on my computer.`;
     this.speechBubbleImage = new Image();
     this.speechBubbleImage.onload = () => this.onImageLoad();
     this.speechBubbleImage.src = 'assets/images/speech-bubble.png';
+    
+    // load profile image
+    this.profileImage = new Image();
+    this.profileImage.onload = () => this.onImageLoad();
+    this.profileImage.src = 'assets/images/player-profile.PNG';
   }
 
   private onImageLoad() {
@@ -170,6 +175,11 @@ P.S. You can find more technical details on my computer.`;
       // 'z' key for interactions
       if (event.key.toLowerCase() === 'z') {
         this.handleInteraction();
+      }
+      
+      // 'x' key for exit/close
+      if (event.key.toLowerCase() === 'x') {
+        this.handleExit();
       }
     });
 
@@ -492,6 +502,17 @@ P.S. You can find more technical details on my computer.`;
       }
     }
     console.log('No interactable objects found');
+  }
+
+  private handleExit() {
+    console.log('X key pressed - handling exit');
+    // If popup is showing, close it
+    if (this.showPopup) {
+      this.closePopup();
+    } else {
+      // If not on home page, navigate to home
+      this.router.navigate(['/']);
+    }
   }
 
   private checkObjectClick(clickX: number, clickY: number) {

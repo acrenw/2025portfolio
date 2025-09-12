@@ -80,6 +80,37 @@
   }
 }
 
+// Profile container styles
+.profile-container {
+  position: absolute;
+  top: -150px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  z-index: 1001;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.profile-name {
+  color: #ecf0f1;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
 @keyframes slideUp {
   from {
     transform: translateY(100%);

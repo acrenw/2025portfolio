@@ -1,6 +1,216 @@
 <div class="page-container">
   <button class="close-button" (click)="goBack()" aria-label="Close page">×</button>
+  
   <div class="content">
-    <p>pc works!</p>
+    <h1 class="page-title">Professional Experience</h1>
+    
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'internships'"
+        (click)="setActiveTab('internships')">
+        Internships
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'projects'"
+        (click)="setActiveTab('projects')">
+        Projects
+      </button>
+    </div>
+
+    <!-- Internships Tab -->
+    <div *ngIf="activeTab === 'internships'" class="internships-container">
+      <div 
+        *ngFor="let internship of internships" 
+        class="internship-card"
+        (click)="openInternshipModal(internship)">
+        <img 
+          [src]="internship.thumbnailUrl" 
+          [alt]="internship.title"
+          class="internship-image">
+        <div class="internship-info">
+          <h3 class="internship-title">{{ internship.title }}</h3>
+          <p class="internship-date">{{ internship.date }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Tab -->
+    <div *ngIf="activeTab === 'projects'" class="projects-container">
+      <div class="projects-grid">
+        <div 
+          *ngFor="let project of projects" 
+          class="project-card"
+          (click)="openProjectModal(project)">
+          <img 
+            [src]="project.thumbnailUrl" 
+            [alt]="project.title"
+            class="project-thumbnail">
+          <div class="project-info">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-caption">{{ project.caption }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Detail Modal -->
+  <div class="modal-overlay" *ngIf="showProjectModal" (click)="closeProjectModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeProjectModal()" aria-label="Close modal">×</button>
+      <div class="modal-body" *ngIf="selectedProject">
+        <div class="project-header">
+          <h2 class="project-modal-title">{{ selectedProject.title }}</h2>
+          <div class="technologies">
+            <span 
+              *ngFor="let tech of selectedProject.details.technologies" 
+              class="tech-tag">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="project-description">
+          <p>{{ selectedProject.details.description }}</p>
+        </div>
+
+        <!-- Images Section -->
+        <div *ngIf="selectedProject.details.images.length > 0" class="content-section">
+          <h3>Images</h3>
+          <div class="images-grid">
+            <img 
+              *ngFor="let image of selectedProject.details.images" 
+              [src]="image" 
+              [alt]="selectedProject.title + ' image'"
+              class="content-image">
+          </div>
+        </div>
+
+        <!-- Videos Section -->
+        <div *ngIf="selectedProject.details.videos.length > 0" class="content-section">
+          <h3>Videos</h3>
+          <div class="videos-container">
+            <video 
+              *ngFor="let video of selectedProject.details.videos" 
+              [src]="video" 
+              controls
+              class="content-video">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <!-- Embeds Section -->
+        <div *ngIf="selectedProject.details.embeds.length > 0" class="content-section">
+          <h3>Interactive Demos</h3>
+          <div class="embeds-container">
+            <iframe 
+              *ngFor="let embed of selectedProject.details.embeds" 
+              [src]="getEmbedUrl(embed)" 
+              class="content-embed"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Links Section -->
+        <div *ngIf="selectedProject.details.links.length > 0" class="content-section">
+          <h3>Links</h3>
+          <div class="links-container">
+            <a 
+              *ngFor="let link of selectedProject.details.links" 
+              [href]="link.url" 
+              target="_blank"
+              class="project-link">
+              {{ link.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Internship Detail Modal -->
+  <div class="modal-overlay" *ngIf="showInternshipModal" (click)="closeInternshipModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeInternshipModal()" aria-label="Close modal">×</button>
+      <div class="modal-body" *ngIf="selectedInternship">
+        <div class="project-header">
+          <h2 class="project-modal-title">{{ selectedInternship.title }}</h2>
+          <div class="technologies">
+            <span 
+              *ngFor="let tech of selectedInternship.details.technologies" 
+              class="tech-tag">
+              {{ tech }}
+            </span>
+          </div>
+          <p class="internship-modal-date">{{ selectedInternship.date }}</p>
+        </div>
+        
+        <div class="project-description">
+          <p>{{ selectedInternship.details.description }}</p>
+        </div>
+
+        <!-- Images Section -->
+        <div *ngIf="selectedInternship.details.images.length > 0" class="content-section">
+          <h3>Images</h3>
+          <div class="images-grid">
+            <img 
+              *ngFor="let image of selectedInternship.details.images" 
+              [src]="image" 
+              [alt]="selectedInternship.title + ' image'"
+              class="content-image">
+          </div>
+        </div>
+
+        <!-- Videos Section -->
+        <div *ngIf="selectedInternship.details.videos.length > 0" class="content-section">
+          <h3>Videos</h3>
+          <div class="videos-container">
+            <video 
+              *ngFor="let video of selectedInternship.details.videos" 
+              [src]="video" 
+              controls
+              class="content-video">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <!-- Embeds Section -->
+        <div *ngIf="selectedInternship.details.embeds.length > 0" class="content-section">
+          <h3>Interactive Demos</h3>
+          <div class="embeds-container">
+            <iframe 
+              *ngFor="let embed of selectedInternship.details.embeds" 
+              [src]="safeUrl(embed)" 
+              class="content-embed"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Links Section -->
+        <div *ngIf="selectedInternship.details.links.length > 0" class="content-section">
+          <h3>Links</h3>
+          <div class="links-container">
+            <a 
+              *ngFor="let link of selectedInternship.details.links" 
+              [href]="link.url" 
+              target="_blank"
+              class="project-link">
+              {{ link.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
