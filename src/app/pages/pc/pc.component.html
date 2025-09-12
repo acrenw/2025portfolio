@@ -29,7 +29,8 @@
         <img 
           [src]="internship.thumbnailUrl" 
           [alt]="internship.title"
-          class="internship-image">
+          class="internship-image"
+          loading="lazy">
         <div class="internship-info">
           <h3 class="internship-title">{{ internship.title }}</h3>
           <p class="internship-date">{{ internship.date }}</p>
@@ -47,7 +48,8 @@
           <img 
             [src]="project.thumbnailUrl" 
             [alt]="project.title"
-            class="project-thumbnail">
+            class="project-thumbnail"
+            loading="lazy">
           <div class="project-info">
             <h3 class="project-title">{{ project.title }}</h3>
             <p class="project-caption">{{ project.caption }}</p>
@@ -85,7 +87,8 @@
               *ngFor="let image of selectedProject.details.images" 
               [src]="image" 
               [alt]="selectedProject.title + ' image'"
-              class="content-image">
+              class="content-image"
+              loading="lazy">
           </div>
         </div>
 
@@ -164,7 +167,8 @@
               *ngFor="let image of selectedInternship.details.images" 
               [src]="image" 
               [alt]="selectedInternship.title + ' image'"
-              class="content-image">
+              class="content-image"
+              loading="lazy">
           </div>
         </div>
 

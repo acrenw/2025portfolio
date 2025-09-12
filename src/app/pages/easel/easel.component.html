@@ -35,7 +35,8 @@
         <img 
           [src]="artwork.thumbnailUrl" 
           [alt]="artwork.title"
-          class="artwork-image">
+          class="artwork-image"
+          loading="lazy">
         <div class="artwork-overlay">
           <h3 class="artwork-title">{{ artwork.title }}</h3>
           <div class="play-button" *ngIf="artwork.type === 'video'">▶</div>
@@ -73,7 +74,8 @@
           *ngIf="selectedArtwork.type === 'image'"
           [src]="selectedArtwork.imageUrl" 
           [alt]="selectedArtwork.title"
-          class="modal-image">
+          class="modal-image"
+          loading="lazy">
         <div class="modal-info">
           <h2 class="modal-title">{{ selectedArtwork.title }}</h2>
           <p class="modal-caption">{{ selectedArtwork.caption }}</p>

@@ -86,11 +86,13 @@ export class HomeSceneComponent implements OnInit, OnDestroy {
 
   // Images
   private bgImage!: HTMLImageElement;
+  private bgGlowImage!: HTMLImageElement;
   private playerImage!: HTMLImageElement;
   private speechBubbleImage!: HTMLImageElement;
   private profileImage!: HTMLImageElement;
   private imagesLoaded = 0;
-  private totalImages = 4;
+  private totalImages = 5;
+  private imagesReady = false;
   
   // popup text things
   public showPopup = false;
@@ -140,30 +142,56 @@ P.S. You can find more technical details on my computer.`;
   }
 
   private loadImages() {
-    // load bg
+    // load bg normal
     this.bgImage = new Image();
     this.bgImage.onload = () => this.onImageLoad();
-    this.bgImage.src = this.bgImageSrc;
+    this.bgImage.onerror = () => {
+      console.error('Failed to load background image');
+      this.onImageLoad();
+    };
+    this.bgImage.src = 'assets/images/home-bg.PNG';
+    
+    // load bg glow
+    this.bgGlowImage = new Image();
+    this.bgGlowImage.onload = () => this.onImageLoad();
+    this.bgGlowImage.onerror = () => {
+      console.error('Failed to load background glow image');
+      this.onImageLoad();
+    };
+    this.bgGlowImage.src = 'assets/images/home-bg-glow.png';
     
     // load player
     this.playerImage = new Image();
     this.playerImage.onload = () => this.onImageLoad();
+    this.playerImage.onerror = () => {
+      console.error('Failed to load player image:', this.playerImageSrc);
+      this.onImageLoad();
+    };
     this.playerImage.src = this.playerImageSrc;
     
     // load speech bubble
     this.speechBubbleImage = new Image();
     this.speechBubbleImage.onload = () => this.onImageLoad();
+    this.speechBubbleImage.onerror = () => {
+      console.error('Failed to load speech bubble image');
+      this.onImageLoad();
+    };
     this.speechBubbleImage.src = 'assets/images/speech-bubble.png';
     
     // load profile image
     this.profileImage = new Image();
     this.profileImage.onload = () => this.onImageLoad();
+    this.profileImage.onerror = () => {
+      console.error('Failed to load profile image');
+      this.onImageLoad();
+    };
     this.profileImage.src = 'assets/images/player-profile.PNG';
   }
 
   private onImageLoad() {
     this.imagesLoaded++;
     if (this.imagesLoaded === this.totalImages) {
+      this.imagesReady = true;
       this.startGameLoop();
     }
   }
@@ -370,11 +398,25 @@ P.S. You can find more technical details on my computer.`;
     // clear
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     
-    // draw
-    this.drawBackground();
-  
-    this.drawPlayer();
-    this.drawSpeechBubble();
+    // Only draw if images are ready
+    if (this.imagesReady) {
+      this.drawBackground();
+      this.drawPlayer();
+      this.drawSpeechBubble();
+    } else {
+      // Show loading state
+      this.drawLoadingScreen();
+    }
+  }
+
+  private drawLoadingScreen() {
+    this.ctx.fillStyle = '#856249';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    this.ctx.fillStyle = '#ffffff';
+    this.ctx.font = '24px Arial';
+    this.ctx.textAlign = 'center';
+    this.ctx.fillText('Loading...', this.canvas.width / 2, this.canvas.height / 2);
   }
 
   private drawBackground() {
@@ -394,14 +436,32 @@ P.S. You can find more technical details on my computer.`;
     this.ctx.fillStyle = '#000000';
     this.ctx.fillRect(bgX - 4, bgY - 4, bgWidth + 8, bgHeight + 8);
     
-    // draw bg image
-    this.ctx.drawImage(
-      this.bgImage,
-      bgX,
-      bgY,
-      bgWidth,
-      bgHeight
-    );
+    // always draw the base background first
+    if (this.bgImage && this.bgImage.complete && this.bgImage.naturalWidth > 0) {
+      this.ctx.drawImage(
+        this.bgImage,
+        bgX,
+        bgY,
+        bgWidth,
+        bgHeight
+      );
+    } else {
+      // draw placeholder while loading
+      this.ctx.fillStyle = '#856249';
+      this.ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
+    }
+    
+    // overlay the glow effect when it's the glow cycle
+    if (this.bgImageSrc === 'assets/images/home-bg-glow.png' && 
+        this.bgGlowImage && this.bgGlowImage.complete && this.bgGlowImage.naturalWidth > 0) {
+      this.ctx.drawImage(
+        this.bgGlowImage,
+        bgX,
+        bgY,
+        bgWidth,
+        bgHeight
+      );
+    }
   }
 
   private drawPlayer() {
@@ -409,13 +469,16 @@ P.S. You can find more technical details on my computer.`;
     const screenWidth = this.playerWidth * this.viewport.scale;
     const screenHeight = this.playerHeight * this.viewport.scale;
     
-    this.ctx.drawImage(
-      this.playerImage,
-      screenPos.x,
-      screenPos.y,
-      screenWidth,
-      screenHeight
-    );
+    // only draw player if image is loaded
+    if (this.playerImage && this.playerImage.complete && this.playerImage.naturalWidth > 0) {
+      this.ctx.drawImage(
+        this.playerImage,
+        screenPos.x,
+        screenPos.y,
+        screenWidth,
+        screenHeight
+      );
+    }
   }
 
   private drawSpeechBubble() {

@@ -99,8 +99,8 @@ export class PianoComponent {
       id: 6,
       title: 'Frost Whale',
       caption: 'My first LoFi. I always wanted to try music production and LoFi, so this was my first creation when I was messing around in GarageBand (the other softwares are too expensive sadge).',
-      videoUrl: '/assets/piano/frost-whale.MOV',
-      thumbnailUrl: '/assets/piano/frost-whale.png',
+      videoUrl: 'assets/piano/frost-whale.MOV',
+      thumbnailUrl: 'assets/piano/frost-whale.png',
       type: 'video',
       category: 'composed'
     },
@@ -108,8 +108,8 @@ export class PianoComponent {
       id: 7,
       title: 'Late Night Highway',
       caption: 'I created this one the same day that I made Frost Whale, expect I knew I wanted to try out some sound effects and pre-recorded voices, so this was the concoction of that.',
-      videoUrl: '/assets/piano/late-night-highway.mov',
-      thumbnailUrl: '/assets/piano/late-night-highway.png',
+      videoUrl: 'assets/piano/late-night-highway.mov',
+      thumbnailUrl: 'assets/piano/late-night-highway.png',
       type: 'video',
       category: 'composed'
     }
