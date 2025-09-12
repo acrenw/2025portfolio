@@ -1,5 +1,5 @@
 # Welcome
-Hello there, you're currently looking at my portfolio. It's live here: [https://acrenw.github.io/2024portfolio/](https://acrenw.github.io/2025portfolio/)
+Hello there, you're currently looking at my portfolio. It's live here: [https://acrenw.github.io/2025portfolio/](https://acrenw.github.io/2025portfolio/)
 
 I'm Cera Wang, a Computer Engineering student at the University of Waterloo. I am currently actively seeking job opportunities.
 If I don't seem too bad, you can reach me with anything below:
