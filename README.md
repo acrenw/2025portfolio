@@ -1,59 +1,10 @@
-# 2025Portfolio
+# Welcome
+Hello there, you're currently looking at my portfolio. It's live here: https://acrenw.github.io/2024portfolio/
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+I'm Cera Wang, a Computer Engineering student at the University of Waterloo. I am currently actively seeking job opportunities.
+If I don't seem too bad, you can reach me with anything below:
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# Contact
+Email:      c252wang@uwaterloo.ca
+LinkedIn:   https://www.linkedin.com/in/cera-wang-171699240/
+Phone:      +1 519-577-3709 / +86 080-5661-4359
