@@ -26,14 +26,14 @@ export class AwardsComponent {
 
   // Sample awards content data - replace with your actual content
   awardContent: AwardContent[] = [
-    {
-      id: 1,
-      title: 'Piano First Class Honours',
-      caption: 'Level 8 Piano First Class Honours Issued by The Royal Conservatory of Music.',
-      imageUrl: 'https://via.placeholder.com/500x300/45b7d1/ffffff?text=Certificate',
-      thumbnailUrl: 'https://via.placeholder.com/500x300/45b7d1/ffffff?text=Certificate',
-      type: 'image'
-    },
+    // {
+    //   id: 1,
+    //   title: 'Piano First Class Honours',
+    //   caption: 'Level 8 Piano First Class Honours Issued by The Royal Conservatory of Music.',
+    //   imageUrl: 'https://via.placeholder.com/500x300/45b7d1/ffffff?text=Certificate',
+    //   thumbnailUrl: 'https://via.placeholder.com/500x300/45b7d1/ffffff?text=Certificate',
+    //   type: 'image'
+    // },
     {
       id: 2,
       title: 'CCC Top 25%',

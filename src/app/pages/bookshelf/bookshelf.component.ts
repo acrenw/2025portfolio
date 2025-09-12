@@ -34,14 +34,14 @@ export class BookshelfComponent {
       thumbnailUrl: 'assets/bookshelf/caterpillar-looking-for-friends.jpg',
       type: 'image'
     },
-    {
-      id: 2,
-      title: 'Dream Catcher',
-      caption: 'The published Polar Express short story that got picked in the National Student Short-Story Contes.',
-      videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
-      thumbnailUrl: 'https://via.placeholder.com/500x400/4ecdc4/ffffff?text=Review',
-      type: 'image'
-    }
+    // {
+    //   id: 2,
+    //   title: 'Dream Catcher',
+    //   caption: 'The published Polar Express short story that got picked in the National Student Short-Story Contes.',
+    //   videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+    //   thumbnailUrl: 'https://via.placeholder.com/500x400/4ecdc4/ffffff?text=Review',
+    //   type: 'image'
+    // }
   ];
 
   constructor(private router: Router, private gameStateService: GameStateService) {}

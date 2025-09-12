@@ -48,7 +48,7 @@ export class HomeSceneComponent implements OnInit, OnDestroy {
   // player state
   private playerX = this.WORLD_WIDTH / 2;
   private playerY = this.WORLD_HEIGHT / 2;
-  private playerSpeed = 7;
+  private playerSpeed = 10;
   private playerWidth = 90;
   private playerHeight = 120;
   private playerFacing: 'up' | 'down' | 'left' | 'right' = 'down';
