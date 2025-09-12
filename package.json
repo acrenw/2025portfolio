@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:github-pages": "ng build --configuration production --base-href /2025portfolio/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:2025-portfolio": "node dist/2025-portfolio/server/server.mjs"
