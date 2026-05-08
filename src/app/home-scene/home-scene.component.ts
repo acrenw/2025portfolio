@@ -35,8 +35,9 @@ export class HomeSceneComponent implements OnInit, OnDestroy {
   // world dimensions for scaling
   private readonly WORLD_WIDTH = 1280;
   private readonly WORLD_HEIGHT = 720;
+  private readonly INTERACTION_RANGE = 250;
   
-  // viewport stuff - handles scaling and positioning
+  // viewport stuff, handles scaling and positioning
   private viewport: Viewport = { scale: 1, offsetX: 0, offsetY: 0, renderW: 0, renderH: 0 };
   
   // game state variables
@@ -68,23 +69,38 @@ export class HomeSceneComponent implements OnInit, OnDestroy {
     { name: 'piano', x: 647, y: 430, width: 253, height: 120 }
   ];
 
-  // interactable object boundaries adn routes
+  // interactable object boundaries and routes
   private interactableObjects = [
     { name: 'easel', x: 40, y: 150, width: 95, height: 140, page: 'easel' },
     { name: 'dance-mat', x: 150, y: 430, width: 142, height: 170, page: 'dance-mat' },
-    { name: 'pc', x: 170, y: 120, width: 190, height: 180, page: 'pc' },
+    { name: 'pc', x: 170, y: 120, width: 190, height: 200, page: 'pc' },
     { name: 'guitar', x: 391, y: 151, width: 88, height: 160, page: 'guitar' },
     { name: 'bookshelf', x: 495, y: 142, width: 149, height: 200, page: 'bookshelf' },
     { name: 'camera', x: 880, y: 200, width: 60, height: 40, page: 'camera' },
     { name: 'piano', x: 647, y: 430, width: 253, height: 120, page: 'piano' },
-    { name: 'awards', x: 700, y: 30, width: 140, height: 58, page: 'awards' },
+    { name: 'awards', x: 700, y: 30, width: 140, height: 330, page: 'awards' },
     { name: 'speech-bubble', x: 0, y: 0, width: 0, height: 0, page: 'speech-bubble' } // Dynamic position
   ];
 
-  // Keybaord tracking
+  // keyboard tracking
   private keys: { [key: string]: boolean } = {};
 
-  // Images
+  // debug grid toggle
+  public showDebugGrid = false;
+
+  // named event handler references so they can be removed on destroy
+  private keydownHandler = (event: KeyboardEvent) => {
+    this.keys[event.key.toLowerCase()] = true;
+    if (event.key.toLowerCase() === 'z') this.handleInteraction();
+    if (event.key.toLowerCase() === 'x') this.handleExit();
+    // if (event.key.toLowerCase() === 'g') this.showDebugGrid = !this.showDebugGrid; // TODO: uncomment for debug
+  };
+
+  private keyupHandler = (event: KeyboardEvent) => {
+    this.keys[event.key.toLowerCase()] = false;
+  };
+
+  // images
   private bgImage!: HTMLImageElement;
   private bgGlowImage!: HTMLImageElement;
   private playerImage!: HTMLImageElement;
@@ -128,6 +144,8 @@ P.S. You can find more technical details on my computer.`;
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
+    document.removeEventListener('keydown', this.keydownHandler);
+    document.removeEventListener('keyup', this.keyupHandler);
   }
 
   @HostListener('window:resize')
@@ -197,23 +215,8 @@ P.S. You can find more technical details on my computer.`;
   }
 
   private setupEventListeners() {
-    document.addEventListener('keydown', (event) => {
-      this.keys[event.key.toLowerCase()] = true;
-      
-      // 'z' key for interactions
-      if (event.key.toLowerCase() === 'z') {
-        this.handleInteraction();
-      }
-      
-      // 'x' key for exit/close
-      if (event.key.toLowerCase() === 'x') {
-        this.handleExit();
-      }
-    });
-
-    document.addEventListener('keyup', (event) => {
-      this.keys[event.key.toLowerCase()] = false;
-    });
+    document.addEventListener('keydown', this.keydownHandler);
+    document.addEventListener('keyup', this.keyupHandler);
 
     // mouse click listener
     this.canvas.addEventListener('click', (event) => {
@@ -251,7 +254,7 @@ P.S. You can find more technical details on my computer.`;
     const oldX = this.playerX;
     const oldY = this.playerY;
 
-    // movement controls - wasd or arrow keys
+    // movement controls, wasd or arrow keys
     if (this.keys['w'] || this.keys['arrowup']) {
       this.playerY -= this.playerSpeed;
       this.playerImage.src = 'assets/images/player-back-up.PNG';
@@ -296,7 +299,7 @@ P.S. You can find more technical details on my computer.`;
   }
 
   private checkCollisions(): boolean {
-    // Scale
+    // scale
     const bgScale = 0.8;
     const bgWorldWidth = this.WORLD_WIDTH * bgScale; // 1024
     const bgWorldHeight = this.WORLD_HEIGHT * bgScale; // 576
@@ -320,7 +323,7 @@ P.S. You can find more technical details on my computer.`;
                           objWorldX, objWorldY, objWorldWidth, objWorldHeight);
       
       if (isColliding) {
-       return true;
+        return true;
       }
     }
 
@@ -397,7 +400,7 @@ P.S. You can find more technical details on my computer.`;
   private draw() {
     // clear
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
     // Only draw if images are ready
     if (this.imagesReady) {
       this.drawBackground();
@@ -406,6 +409,10 @@ P.S. You can find more technical details on my computer.`;
     } else {
       // Show loading state
       this.drawLoadingScreen();
+    }
+
+    if (this.showDebugGrid) {
+      this.drawDebugGrid();
     }
   }
 
@@ -417,6 +424,89 @@ P.S. You can find more technical details on my computer.`;
     this.ctx.font = '24px Arial';
     this.ctx.textAlign = 'center';
     this.ctx.fillText('Loading...', this.canvas.width / 2, this.canvas.height / 2);
+  }
+
+  private drawDebugGrid() {
+    const { scale, offsetX, offsetY } = this.viewport;
+
+    // bg occupies 80% of the world, centered
+    const bgScale = 0.8;
+    const bgWorldW = this.WORLD_WIDTH * bgScale; // 1024
+    const bgWorldH = this.WORLD_HEIGHT * bgScale; // 576
+    const bgOriginX = (this.WORLD_WIDTH - bgWorldW) / 2; // 128 in world coords
+    const bgOriginY = (this.WORLD_HEIGHT - bgWorldH) / 2; // 72  in world coords
+
+    // screen position of the background origin
+    const screenBgX = offsetX + bgOriginX * scale;
+    const screenBgY = offsetY + bgOriginY * scale;
+    const screenBgW = bgWorldW * scale;
+    const screenBgH = bgWorldH * scale;
+
+    const step = 50; // background space pixels between grid lines
+
+    this.ctx.save();
+    this.ctx.lineWidth = 1;
+    this.ctx.font = '10px monospace';
+
+    // draw vertical lines (x axis)
+    for (let bgX = 0; bgX <= bgWorldW; bgX += step) {
+      const sx = screenBgX + bgX * scale;
+      // alternate darkness for every 100 unit line
+      this.ctx.strokeStyle = bgX % 100 === 0 ? 'rgba(0,0,0,0.85)' : 'rgba(0,0,0,0.35)';
+      this.ctx.beginPath();
+      this.ctx.moveTo(sx, screenBgY);
+      this.ctx.lineTo(sx, screenBgY + screenBgH);
+      this.ctx.stroke();
+
+      // label at top
+      this.ctx.fillStyle = 'rgba(0,0,0,0.9)';
+      this.ctx.textAlign = 'left';
+      this.ctx.fillText(String(bgX), sx + 2, screenBgY + 11);
+    }
+
+    // draw horizontal lines (y axis)
+    for (let bgY = 0; bgY <= bgWorldH; bgY += step) {
+      const sy = screenBgY + bgY * scale;
+      this.ctx.strokeStyle = bgY % 100 === 0 ? 'rgba(0,0,0,0.85)' : 'rgba(0,0,0,0.35)';
+      this.ctx.beginPath();
+      this.ctx.moveTo(screenBgX, sy);
+      this.ctx.lineTo(screenBgX + screenBgW, sy);
+      this.ctx.stroke();
+
+      // label at left
+      this.ctx.fillStyle = 'rgba(0,0,0,0.9)';
+      this.ctx.textAlign = 'left';
+      this.ctx.fillText(String(bgY), screenBgX + 2, sy - 2);
+    }
+
+    // draw a small crosshair at player position for reference
+    const playerScreen = this.worldToScreen(
+      this.playerX + this.playerWidth / 2,
+      this.playerY + this.playerHeight / 2
+    );
+    this.ctx.strokeStyle = 'rgba(255, 0, 0, 0.9)';
+    this.ctx.lineWidth = 1.5;
+    this.ctx.beginPath();
+    this.ctx.moveTo(playerScreen.x - 8, playerScreen.y);
+    this.ctx.lineTo(playerScreen.x + 8, playerScreen.y);
+    this.ctx.moveTo(playerScreen.x, playerScreen.y - 8);
+    this.ctx.lineTo(playerScreen.x, playerScreen.y + 8);
+    this.ctx.stroke();
+
+    // show player's bg space coords in corner
+    const playerBgX = Math.round(this.playerX - bgOriginX);
+    const playerBgY = Math.round(this.playerY - bgOriginY);
+    this.ctx.fillStyle = 'rgba(255,0,0,0.95)';
+    this.ctx.font = 'bold 12px monospace';
+    this.ctx.textAlign = 'left';
+    this.ctx.fillText(`player bg: (${playerBgX}, ${playerBgY})`, screenBgX + 4, screenBgY + screenBgH - 6);
+
+    // legend
+    this.ctx.fillStyle = 'rgba(0,0,0,0.8)';
+    this.ctx.font = 'bold 12px monospace';
+    this.ctx.fillText('G = toggle debug grid | coords = background-space px', screenBgX + 4, screenBgY + screenBgH + 16);
+
+    this.ctx.restore();
   }
 
   private drawBackground() {
@@ -546,34 +636,43 @@ P.S. You can find more technical details on my computer.`;
   }
 
   private handleInteraction() {
+    // don't interact while the welcome popup is open
+    if (this.showPopup) return;
+
     console.log('Z key pressed - checking interactions');
-    // check if player is close to something and looking at it
+    // find the closest object that is both near and facing
+    let closest: { obj: any; distance: number } | null = null;
+
     for (const obj of this.interactableObjects) {
-      // Skip speech bubble for z key interactions
-      if (obj.name === 'speech-bubble') {
-        continue;
-      }
-      
+      if (obj.name === 'speech-bubble') continue;
+
       const isNear = this.isPlayerNearObject(obj);
       const isFacing = this.isPlayerFacingObject(obj);
       console.log(`Object ${obj.name}: near=${isNear}, facing=${isFacing}`);
-      
+
       if (isNear && isFacing) {
-        console.log(`Interacting with ${obj.name}`);
-        this.navigateToPage(obj.page);
-        return;
+        const distance = this.getDistanceToObject(obj);
+        if (!closest || distance < closest.distance) {
+          closest = { obj, distance };
+        }
       }
     }
-    console.log('No interactable objects found');
+
+    if (closest) {
+      console.log(`Interacting with ${closest.obj.name}`);
+      this.navigateToPage(closest.obj.page);
+    } else {
+      console.log('No interactable objects found');
+    }
   }
 
   private handleExit() {
     console.log('X key pressed - handling exit');
-    // If popup is showing, close it
+    // if popup is showing, close it
     if (this.showPopup) {
       this.closePopup();
     } else {
-      // If not on home page, navigate to home
+      // if not on home page, navigate to home
       this.router.navigate(['/']);
     }
   }
@@ -588,32 +687,33 @@ P.S. You can find more technical details on my computer.`;
     }
   }
 
-  private isPlayerNearObject(obj: any): boolean {
-    // Convert object background coordinates to world coordinates
+  private getDistanceToObject(obj: any): number {
     const bgScale = 0.8;
-    const bgWorldWidth = this.WORLD_WIDTH * bgScale; // 1024
-    const bgWorldHeight = this.WORLD_HEIGHT * bgScale; // 576
-    const bgWorldX = (this.WORLD_WIDTH - bgWorldWidth) / 2; // 128
-    const bgWorldY = (this.WORLD_HEIGHT - bgWorldHeight) / 2; // 72
-    
+    const bgWorldWidth = this.WORLD_WIDTH * bgScale;
+    const bgWorldHeight = this.WORLD_HEIGHT * bgScale;
+    const bgWorldX = (this.WORLD_WIDTH - bgWorldWidth) / 2;
+    const bgWorldY = (this.WORLD_HEIGHT - bgWorldHeight) / 2;
+
     const objWorldX = bgWorldX + obj.x;
     const objWorldY = bgWorldY + obj.y;
-    
+
     const playerCenterX = this.playerX + this.playerWidth / 2;
     const playerCenterY = this.playerY + this.playerHeight / 2;
     const objCenterX = objWorldX + obj.width / 2;
     const objCenterY = objWorldY + obj.height / 2;
-    
-    const distance = Math.sqrt(
-      Math.pow(playerCenterX - objCenterX, 2) + 
+
+    return Math.sqrt(
+      Math.pow(playerCenterX - objCenterX, 2) +
       Math.pow(playerCenterY - objCenterY, 2)
     );
-    
-    return distance < 120; // Interaction range
+  }
+
+  private isPlayerNearObject(obj: any): boolean {
+    return this.getDistanceToObject(obj) < this.INTERACTION_RANGE;
   }
 
   private isPlayerFacingObject(obj: any): boolean {
-    // Convert object background coordinates to world coordinates
+    // convert object background coordinates to world coordinates
     const bgScale = 0.8;
     const bgWorldWidth = this.WORLD_WIDTH * bgScale; // 1024
     const bgWorldHeight = this.WORLD_HEIGHT * bgScale; // 576
@@ -631,8 +731,8 @@ P.S. You can find more technical details on my computer.`;
     const dx = objCenterX - playerCenterX;
     const dy = objCenterY - playerCenterY;
     
-    // Check if player is looking at the object based on which way they're facing
-    // Use a more lenient angle check (45 degrees instead of strict directional)
+    // check if player is looking at the object based on which way they're facing
+    // use a more lenient angle check (45 degrees instead of strict directional)
     const angle = Math.atan2(dy, dx);
     const facingAngle = this.getFacingAngle();
     const angleDiff = Math.abs(angle - facingAngle);
