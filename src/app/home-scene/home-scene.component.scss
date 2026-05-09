@@ -19,105 +19,125 @@
   image-rendering: crisp-edges;
 }
 
-// popup styles
-.popup-overlay {
-  position: fixed;
+.controls-widget {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: clamp(225px, 27vw, 420px);
+  aspect-ratio: 110 / 78;
+}
+
+.controls-bg {
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
-.popup-window {
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100vw;
-  min-height: 200px;
-  position: relative;
-}
-
-.popup-content {
-  padding: 20px;
-  color: #ecf0f1;
-  font-family: 'Arial', sans-serif;
-  
-  p {
-    margin: 0 0 15px 0;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-}
-
-.popup-text {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #ecf0f1;
-}
-
-.close-button {
+.controls-img {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
-  color: white;
-  border: none;
-  padding: 8px 30px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.minimize-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18%;
+  height: 22%;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-  
-  &:hover {
-    color: #c0392b;
-  }
+  // background: rgba(255, 0, 0, 0.4);
 }
 
-// Profile container styles
-.profile-container {
+.controls-minimized-icon {
   position: absolute;
-  top: -150px;
-  left: 20px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 2px solid #000000;
-  border-radius: 8px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 120px;
-  z-index: 1001;
-}
+  top: 1rem;
+  right: 1rem;
+  width: clamp(45px, 6vw, 90px);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  cursor: pointer;
 
-.profile-image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  margin-bottom: 8px;
-}
-
-.profile-name {
-  color: #ecf0f1;
-  font-family: 'Arial', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
+  &:hover {
+    opacity: 0.8;
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+}
+
+.dialog-overlay {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(600px, 82.5vw, 1050px);
+  cursor: pointer;
+}
+
+.dialog-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 137 / 39;
+}
+
+.dialog-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.dialog-text {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 60%;
+  height: 60%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: thin;
+  scrollbar-color: #000 transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
   }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #000;
+  }
+
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(7.5px, 1.5vw, 13.5px);
+  line-height: 1.8;
+  color: #000000;
+
+  // overflow behaviour
+  word-break: break-word;
+  white-space: pre-wrap;
+  // background: rgba(255, 0, 0, 0.4);
+}
+
+.dialog-close-btn {
+  position: absolute;
+  bottom:60%;
+  right: 3%;
+  width: 5%;
+  height: 15%;
+  cursor: pointer;
+  // background: rgba(255, 0, 0, 0.4);
 }

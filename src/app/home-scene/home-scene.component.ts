@@ -88,12 +88,15 @@ export class HomeSceneComponent implements OnInit, OnDestroy {
   // debug grid toggle
   public showDebugGrid = false;
 
+  // controls widget state
+  public controlsMinimized = false;
+
   // named event handler references so they can be removed on destroy
   private keydownHandler = (event: KeyboardEvent) => {
     this.keys[event.key.toLowerCase()] = true;
     if (event.key.toLowerCase() === 'z') this.handleInteraction();
     if (event.key.toLowerCase() === 'x') this.handleExit();
-    // if (event.key.toLowerCase() === 'g') this.showDebugGrid = !this.showDebugGrid; // TODO: uncomment for debug
+    if (event.key.toLowerCase() === 'g') this.showDebugGrid = !this.showDebugGrid; // TODO: uncomment for debug
   };
 
   private keyupHandler = (event: KeyboardEvent) => {
@@ -802,18 +805,21 @@ P.S. You can find more technical details on my computer.`;
   private restoreGameState() {
     // restore popup state
     this.showPopup = this.gameStateService.getShowPopup();
-    
+
+    // restore controls minimized state
+    this.controlsMinimized = this.gameStateService.getControlsMinimized();
+
     // restore player position if it exists
     const savedPosition = this.gameStateService.getPlayerPosition();
     if (savedPosition) {
       this.playerX = savedPosition.x;
       this.playerY = savedPosition.y;
       this.playerFacing = savedPosition.facing;
-      
+
       // update player image based on facing direction
       this.updatePlayerImage();
     }
-    
+
     // mark that we've visited
     this.gameStateService.setHasVisited(true);
   }
@@ -822,6 +828,11 @@ P.S. You can find more technical details on my computer.`;
     // save current player state
     this.gameStateService.setPlayerPosition(this.playerX, this.playerY, this.playerFacing);
     this.gameStateService.setShowPopup(this.showPopup);
+  }
+
+  public setControlsMinimized(value: boolean) {
+    this.controlsMinimized = value;
+    this.gameStateService.setControlsMinimized(value);
   }
 
   private updatePlayerImage() {

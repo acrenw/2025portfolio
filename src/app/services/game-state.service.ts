@@ -9,6 +9,7 @@ export class GameStateService {
   private playerFacing: 'up' | 'down' | 'left' | 'right' | null = null;
   private showPopup: boolean = true; // Default to true for first visit
   private hasVisited: boolean = false;
+  private controlsMinimized: boolean = false;
 
   constructor() {}
 
@@ -37,6 +38,15 @@ export class GameStateService {
 
   getShowPopup(): boolean {
     return this.showPopup;
+  }
+
+  // controls minimized state
+  setControlsMinimized(minimized: boolean) {
+    this.controlsMinimized = minimized;
+  }
+
+  getControlsMinimized(): boolean {
+    return this.controlsMinimized;
   }
 
   // session tracking

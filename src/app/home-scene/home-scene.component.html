@@ -1,22 +1,29 @@
 <div class="game-container">
-  <canvas #gameCanvas 
+  <canvas #gameCanvas
           class="game-canvas"
           (window:resize)="onResize()">
   </canvas>
-  
-  <!-- Popup Text Window -->
-  <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
-    <div class="popup-window" (click)="$event.stopPropagation()">
-      <!-- Profile Image and Name Container -->
-      <div class="profile-container">
-        <img src="assets/images/player-profile.PNG" alt="Cera Wang" class="profile-image" loading="lazy">
-        <div class="profile-name">Cera Wang</div>
-      </div>
-      
-      <div class="popup-content">
-        <button class="close-button" (click)="closePopup()">×</button>
-        <div class="popup-text" [innerHTML]="getFormattedText()"></div>
-      </div>
+
+  <!-- controls widget expanded -->
+  <div class="controls-widget" *ngIf="!controlsMinimized">
+    <img src="assets/controls-bg.png" class="controls-bg"  alt="">
+    <img src="assets/controls.png" class="controls-img" alt="Controls: WASD/arrows to move, Z to select, X to cancel">
+    <div class="minimize-btn" (click)="setControlsMinimized(true)"></div>
+  </div>
+
+  <!-- controls widget minimized -->
+  <img *ngIf="controlsMinimized"
+       src="assets/controls-minimized.png"
+       class="controls-minimized-icon"
+       alt="Expand controls"
+       (click)="setControlsMinimized(false)">
+
+  <!-- dialog box popup -->
+  <div class="dialog-overlay" *ngIf="showPopup">
+    <div class="dialog-box" (click)="closePopup()">
+      <img src="assets/dialog-box.png" class="dialog-bg" alt="">
+      <div class="dialog-text" [innerHTML]="getFormattedText()"></div>
+      <div class="dialog-close-btn" (click)="closePopup(); $event.stopPropagation()"></div>
     </div>
   </div>
 </div>
