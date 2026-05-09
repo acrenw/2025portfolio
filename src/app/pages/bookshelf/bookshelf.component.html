@@ -10,11 +10,13 @@
         *ngFor="let content of bookContent" 
         class="content-item"
         (click)="openModal(content)">
-        <img 
-          [src]="content.thumbnailUrl" 
+        <img
+          #thumb
+          [src]="content.thumbnailUrl"
           [alt]="content.title"
           class="content-thumbnail"
-          loading="lazy">
+          loading="lazy"
+          (load)="thumb.style.opacity='1'">
         <div class="content-overlay">
           <h3 class="content-title">{{ content.title }}</h3>
           <div class="play-button" *ngIf="content.type === 'video'">▶</div>

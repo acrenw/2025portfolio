@@ -97,11 +97,12 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  background: transparent;
+  background: #e0e0e0;
   break-inside: avoid;
   margin-bottom: 20px;
   display: inline-block;
   width: 100%;
+  min-height: 150px;
 }
 
 .artwork-item:hover {
@@ -112,7 +113,8 @@
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.3s ease;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .artwork-item:hover .artwork-image {

@@ -26,11 +26,13 @@
         *ngFor="let internship of internships" 
         class="internship-card"
         (click)="openInternshipModal(internship)">
-        <img 
-          [src]="internship.thumbnailUrl" 
+        <img
+          #thumb
+          [src]="internship.thumbnailUrl"
           [alt]="internship.title"
           class="internship-image"
-          loading="lazy">
+          loading="lazy"
+          (load)="thumb.style.opacity='1'">
         <div class="internship-info">
           <h3 class="internship-title">{{ internship.title }}</h3>
           <p class="internship-date">{{ internship.date }}</p>
@@ -45,11 +47,13 @@
           *ngFor="let project of projects" 
           class="project-card"
           (click)="openProjectModal(project)">
-          <img 
-            [src]="project.thumbnailUrl" 
+          <img
+            #thumb
+            [src]="project.thumbnailUrl"
             [alt]="project.title"
             class="project-thumbnail"
-            loading="lazy">
+            loading="lazy"
+            (load)="thumb.style.opacity='1'">
           <div class="project-info">
             <h3 class="project-title">{{ project.title }}</h3>
             <p class="project-caption">{{ project.caption }}</p>
