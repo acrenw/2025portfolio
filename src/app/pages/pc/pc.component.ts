@@ -52,6 +52,24 @@ export class PcComponent {
   internships: Internship[] = [
     {
       id: 1,
+      title: 'LiftWerx',
+      date: 'January 2026 - April 2025',
+      thumbnailUrl: 'assets/pc/internships/liftwerx/Liftwerx_Logo.jpg',
+      details: {
+        description: 'I built a VR validation platform in Unity to simulate wind turbine repair procedures, recovering ~$880k annually.',
+        technologies: ['C#', 'Unity', 'Blender', 'SolidWorks', 'Git'],
+        images: [
+          'assets/pc/internships/liftwerx/cera-in-vr.jpg'
+        ],
+        videos: [],
+        embeds: [],
+        links: [
+          { name: 'LiftWerx Website', url: 'https://liftwerx.com/' }
+        ]
+      }
+    },
+    {
+      id: 2,
       title: 'Full Stack Developer',
       date: 'May 2025 - August 2025',
       thumbnailUrl: 'assets/pc/internships/city-of-waterloo/city-of-waterloo-logo.png',
@@ -65,12 +83,12 @@ export class PcComponent {
         videos: [],
         embeds: [],
         links: [
-          { name: 'Company Website', url: 'https://www.waterloo.ca/en/index.aspx' }
+          { name: 'City of Waterloo Website', url: 'https://www.waterloo.ca/en/index.aspx' }
         ]
       }
     },
     {
-      id: 2,
+      id: 3,
       title: 'Robotics Software Intern',
       date: 'June 2024 - December 2024',
       thumbnailUrl: 'assets/pc/internships/rapyuta-robotics/rr-logo.jpeg',
@@ -84,12 +102,12 @@ export class PcComponent {
         videos: [],
         embeds: [],
         links: [
-          { name: 'Company Website', url: 'https://www.rapyuta-robotics.com/' }
+          { name: 'Rapyuta Robotics Website', url: 'https://www.rapyuta-robotics.com/' }
         ]
       }
     },
     {
-      id: 3,
+      id: 4,
       title: 'Embedded Programmer + Graphic Designer',
       date: 'June 2022 - September 2023',
       thumbnailUrl: 'assets/pc/internships/loopx/loopx-logo.jpeg',
@@ -117,12 +135,12 @@ export class PcComponent {
         videos: [],
         embeds: [],
         links: [
-          { name: 'Company Website', url: 'https://www.loopx.ai/' }
+          { name: 'LoopX Website', url: 'https://www.loopx.ai/' }
         ]
       }
     },
     {
-      id: 4,
+      id: 5,
       title: 'Full Stack Developer',
       date: 'June 2022 - October 2022',
       thumbnailUrl: 'assets/pc/internships/openprinciples/openprinciples-logo.png',
@@ -135,34 +153,133 @@ export class PcComponent {
         videos: [],
         embeds: [],
         links: [
-          { name: 'Company Website', url: 'https://openprinciples.notion.site/OpenPrinciples-681ecdace05b4eda91afee4d91c1df1d' }
+          { name: 'OpenPrinciples Website', url: 'https://openprinciples.notion.site/OpenPrinciples-681ecdace05b4eda91afee4d91c1df1d' }
         ]
       }
     }
   ];
 
-  // Projects ordered by impressiveness for recruiters
   projects: Project[] = [
     {
       id: 1,
-      title: 'Lunar Lander',
-      caption: 'Lunar lander simulator',
-      thumbnailUrl: 'assets/pc/projects/lunar-lander/lunar-lander-tn.png',
+      title: 'Fartnight VR Game',
+      caption: 'A VR game I made for a Game Jam.',
+      thumbnailUrl: 'assets/pc/projects/fartnight/Poster.png',
       details: {
-        description: 'I built a Lunar Lander simulator in Python using TensorFlow and OpenAI Gym, where I implemented a Deep Q-Network (DQN) agent to learn optimal landing strategies through reward-based feedback. I tuned hyperparameters such as learning rate, discount factor, and exploration policy to achieve consistent successful landings.',
-        technologies: ['Python', 'TensorFlow', 'DQN', 'OpenAI Gym'],
+        description: 'I developed a VR game in Unity in 3 days: independently modelled, rigged, and animated characters in Blender and Unity with full animation cycles, implemented gesture-based combat, auto generating maze layout that always guarantees a safe path, wired up immersive audio, and built audio-proximity-triggered attacks.',
+        technologies: ['C#', 'Unity', 'Blender', 'Git'],
         images: [
-          'assets/pc/projects/lunar-lander/IMG_2852.jpg',
-          'assets/pc/projects/lunar-lander/IMG_2853.jpg'
+          'assets/pc/projects/fartnight/alien-attack.gif',
+          'assets/pc/projects/fartnight/alien-death.gif',
+          'assets/pc/projects/fartnight/alien-idle.gif',
+          'assets/pc/projects/fartnight/alien-walk.gif'
+        ],
+        videos: [],
+        embeds: [
+          'https://youtu.be/oasf6XzgHbQ'
+        ],
+        links: [
+          { name: 'GitHub', url: 'https://github.com/cera-liftwerx/GameJam-W26/tree/main' },
+        ]
+      }
+    },
+    {
+      id: 2,
+      title: 'Lingoat',
+      caption: 'Language learning Chrome Extension',
+      thumbnailUrl: 'assets/pc/projects/lingoat/small-promo-tile.png',
+      details: {
+        description: 'I built a dual subtitle chrom extension that supports an AI tutor, real-time translation, built in notes, bilingual support, and more.',
+        technologies: ['JavaScript', 'Chrome APIs', 'Groq Whisper API'],
+        images: [
+          'assets/pc/projects/lingoat/feature-1.png',
+          'assets/pc/projects/lingoat/feature-2.png',
+          'assets/pc/projects/lingoat/feature-3.png',
+          'assets/pc/projects/lingoat/feature-4.png',
+          'assets/pc/projects/lingoat/feature-5.png',
+          'assets/pc/projects/lingoat/popup.png'
+        ],
+        videos: [],
+        embeds: [],
+        links: [
+          { name: 'Chrome Web Store Listing', url: 'https://chromewebstore.google.com/detail/lingoat/kioeehgelhbfegekjnhphjnadonbeimj' },
+          { name: 'Extension Homepage', url: 'https://acrenw.github.io/lingoat/src/onboarding/welcome.html' },
+          { name: 'GitHub', url: 'https://github.com/acrenw/lingoat' },
+        ]
+      }
+    },
+    {
+      id: 3,
+      title: 'Try It On',
+      caption: 'AR fashion try-on iOS app',
+      thumbnailUrl: 'assets/pc/projects/try-it-on/try-it-on-ss.png',
+      details: {
+        description: "I built an iOS AR app that overlays 3D clothes onto tracked image targets using Vuforia in Unity for real-time virtual try-ons. The app also includes features like color and size toggles, as well as surface-anchored models powered by Unity's AR engine.",
+        technologies: ['Unity', 'Vuforia', 'Xcode', 'C#'],
+        images: [
         ],
         videos: [
+          'assets/pc/projects/try-it-on/ar-app.MP4'
         ],
+        embeds: [],
+        links: [] // TODO: push the code so i can add the github
+      }
+    },
+    {
+      id: 4,
+      title: 'RL Mouse Toy',
+      caption: 'AI powered robotic mouse toy for cats',
+      thumbnailUrl: 'assets/pc/projects/robotic-mouse/rendered-mouse-shell.jpeg',
+      details: {
+        description: "I'm developing an AI-powered robotic mouse cat toy using Raspberry Pi 5, Raspberry Pi AI camera, computer vision, and reinforcement learning. The prototype includes a 3D-printed enclosure with a built-in treat dispenser, USB-C charging, and weighted internal mounts for stability.",
+        technologies: ['Raspberry Pi', 'Python', 'OpenCV', 'Embedded Systems'],
+        images: [
+          'assets/pc/projects/robotic-mouse/cross-section-diagram.jpg',
+          'assets/pc/projects/robotic-mouse/rendered-mouse-shell.jpeg'
+        ],
+        videos: [],
         embeds: [],
         links: []
       }
     },
     {
-      id: 2,
+      id: 5,
+      title: 'Cellular Car',
+      caption: 'Remote controlled car via cellular network',
+      thumbnailUrl: 'assets/pc/projects/cellular-car/trump-front.png',
+      details: {
+        description: 'Built a cellular-controlled RC car with a friend on ESP32 with dual control modes, SMS command parsing and TCP socket streaming, using a SIM7670G LTE module.',
+        technologies: ['C++', 'ESP32', 'SIM7670G'],
+        images: [
+          'assets/pc/projects/cellular-car/trump-bottom.png',
+          'assets/pc/projects/cellular-car/trump-front.png',
+          'assets/pc/projects/cellular-car/trump-side.png'
+        ],
+        videos: [],
+        embeds: [
+          'https://www.youtube.com/watch?v=0MTZOHsFFyQ'
+        ],
+        links: [] // TODO: push the code so i can add the github
+      }
+    },
+    {
+      id: 6,
+      title: 'Embedded Drone Development',
+      caption: 'Waterloo Aerial Robotics Group',
+      thumbnailUrl: 'assets/pc/projects/pcb-design/warg-drone.jpg',
+      details: {
+        description: 'At the University of Waterloo, I\'m part of the embedded team in WARG, where I built a Hardware-in-the-Loop testbench for a UAV flight controller, streaming simulated flight state and emulating a power sensor.',
+        technologies: ['Raspberry Pi 5', 'ESP32', 'MATLAB', 'Simulink', 'QUARC', 'UART', 'I2C'],
+        images: [],
+        videos: [],
+        embeds: [],
+        links: [
+          { name: 'WARG Website', url: 'https://www.uwarg.com/' }
+        ]
+      }
+    },
+    {
+      id: 7,
       title: 'Movie Recommender',
       caption: 'Movie recommender systems',
       thumbnailUrl: 'assets/pc/projects/movie-recommender/movie-recommender-tn.png',
@@ -177,11 +294,11 @@ export class PcComponent {
         videos: [
         ],
         embeds: [],
-        links: []
+        links: [] // TODO: push the code so i can add the github
       }
     },
     {
-      id: 3,
+      id: 8,
       title: 'Image Compression',
       caption: 'Image compression algorithm',
       thumbnailUrl: 'assets/pc/projects/image-compression/IMG_2848.jpg',
@@ -197,28 +314,47 @@ export class PcComponent {
         videos: [
         ],
         embeds: [],
-        links: []
+        links: [] // TODO: push the code so i can add the github
       }
     },
     {
-      id: 4,
-      title: 'Try It On',
-      caption: 'AR fashion try-on iOS app',
-      thumbnailUrl: 'assets/pc/projects/try-it-on/try-it-on-logo.png',
+      id: 9,
+      title: 'ClockHacks',
+      caption: 'Hackathon Organizer',
+      thumbnailUrl: 'assets/pc/projects/clockhacks/logo.png',
       details: {
-        description: "I built an iOS AR app that overlays 3D clothes onto tracked image targets using Vuforia in Unity for real-time virtual try-ons. The app also includes features like color and size toggles, as well as surface-anchored models powered by Unity's AR engine.",
-        technologies: ['Unity', 'Vuforia', 'Xcode', 'C#'],
+        description: 'I organized ClockHacks, the largest MLH-certified high school hackathon of 2023 with ~360 attendees, securing over $10,000 in sponsorships through a package I designed. I led workshops, opening/closing ceremonies, and invited guest speakers, while also creating all visual media including the logo, swag, banners, and promotional materials. A unique highlight was the 3-hour organizer hacking event, where my team built and live-streamed a base-10 clock using React, Tailwind, and JavaScript.',
+        technologies: ['JS', 'React', 'Tailwind', 'Netlify'],
         images: [
+          'assets/pc/projects/clockhacks/better_clock1.png',
+          'assets/pc/projects/clockhacks/better_clock2.png',
+          'assets/pc/projects/clockhacks/discord_call.jpg',
+          'assets/pc/projects/clockhacks/ig_post.png',
+          'assets/pc/projects/clockhacks/shirt.png',
+          'assets/pc/projects/clockhacks/shirt2.png',
+          'assets/pc/projects/clockhacks/shirt3.png',
+          'assets/pc/projects/clockhacks/shirt4.png',
+          'assets/pc/projects/clockhacks/sticker1.png',
+          'assets/pc/projects/clockhacks/sticker2.png',
+          'assets/pc/projects/clockhacks/sticker3.png',
+          'assets/pc/projects/clockhacks/working.jpg'
         ],
         videos: [
-          'assets/pc/projects/try-it-on/ar-app.MP4'
         ],
-        embeds: [],
-        links: []
+        embeds: [
+          'https://youtu.be/Irh7pC81TMM'
+        ],
+        links: [
+          { name: 'Hackathon Website', url: 'https://github.com/example-scraper' },
+          { name: 'Organizer Project Website', url: 'https://better-clock.netlify.app/' },
+          { name: 'Organizer Project Devpost', url: 'https://devpost.com/software/better-clock' },
+          { name: 'Organizer Project GitHub', url: 'https://github.com/ClockHacks/organizer-project' },
+          { name: 'Organizer Project Strea', url: 'https://twitch.tv/clockhacks' },
+        ]
       }
     },
     {
-      id: 5,
+      id: 10,
       title: 'ReadBetter',
       caption: 'Bionic reading web app',
       thumbnailUrl: 'assets/pc/projects/readbetter/readbetter-logo.png',
@@ -242,7 +378,7 @@ export class PcComponent {
       }
     },
     {
-      id: 6,
+      id: 11,
       title: 'ShoeBill',
       caption: 'Facial expression tracking webapp to prevent rage gaming',
       thumbnailUrl: 'assets/pc/projects/shoebill/shoebill-logo.png',
@@ -268,7 +404,7 @@ export class PcComponent {
       }
     },
     {
-      id: 7,
+      id: 12,
       title: 'Remindicine',
       caption: 'Portable smart pillbox',
       thumbnailUrl: 'assets/pc/projects/remindicine/remindicine-tn.png',
@@ -286,7 +422,7 @@ export class PcComponent {
       }
     },
     {
-      id: 8,
+      id: 13,
       title: 'HealThyme',
       caption: 'Web app for finding closest health clinics',
       thumbnailUrl: 'assets/pc/projects/healthyme/healthyme-logo.png',
@@ -316,7 +452,7 @@ export class PcComponent {
       }
     },
     {
-      id: 9,
+      id: 14,
       title: 'OSTranslate',
       caption: 'Web app for summarization and translation of any media',
       thumbnailUrl: 'assets/pc/projects/ostranslate/ostranslate-logo.png',
@@ -337,7 +473,7 @@ export class PcComponent {
       }
     },
     {
-      id: 10,
+      id: 15,
       title: 'SignLingo',
       caption: 'Sign language translator and learning software',
       thumbnailUrl: 'assets/pc/projects/signlingo/signlingo-logo.png',
@@ -358,7 +494,7 @@ export class PcComponent {
       }
     },
     {
-      id: 11,
+      id: 16,
       title: 'Slouchn\'t',
       caption: 'CV Slouching detection program',
       thumbnailUrl: 'assets/pc/projects/slouchnt/slouchnt-logo.png',
@@ -384,7 +520,7 @@ export class PcComponent {
       }
     },
     {
-      id: 12,
+      id: 17,
       title: 'To Do List',
       caption: 'To do list iOS app',
       thumbnailUrl: 'assets/pc/projects/to-do-list/to-do-list-logo.png',
@@ -402,12 +538,12 @@ export class PcComponent {
       }
     },
     {
-      id: 13,
+      id: 18,
       title: 'VR Gesture Recognition',
       caption: 'RealityLabs',
-      thumbnailUrl: 'assets/pc/projects/vr-gesture-recognition/realitylabs-logo.jpeg',
+      thumbnailUrl: 'assets/pc/projects/vr-gesture-recognition/gesture-ss.png',
       details: {
-        description: "At the University of Waterloo, I'm part of a team at RealityLabs working on a universal hand gesture recognition system in Unity using Meta MDK Gesture. We're building a custom package to make gesture and gesture sequence recognition easier for developers through an intuitive UI. On the ML side, our team is refining PyTorch-based gesture detection models to improve accuracy for real-time interactions.",
+        description: "At the University of Waterloo, I'm part of the software team at RealityLabs working on a universal hand gesture recognition system in Unity using Meta MDK Gesture. We're building a custom package to make gesture and gesture sequence recognition easier for developers through an intuitive UI. On the ML side, our team is refining PyTorch-based gesture detection models to improve accuracy for real-time interactions.",
         technologies: ['Unity', 'C#', 'PyTorch', 'Meta MD Gesture'],
         images: [],
         videos: [
@@ -415,26 +551,10 @@ export class PcComponent {
         ],
         embeds: [],
         links: [
-          { name: 'Design Team Website', url: 'https://uwrealitylabs.com/' }
+          { name: 'RealityLabs Website', url: 'https://uwrealitylabs.com/' }
         ]
       }
     },
-    // {
-    //   id: 14,
-    //   title: 'PCB Design',
-    //   caption: 'Waterloo Aerial Robotics Group',
-    //   thumbnailUrl: '',
-    //   details: {
-    //     description: "At the University of Waterloo, I'm part of the Waterloo Aerial Robotics Group (WARG), where I worked on designing schematics and PCBs for drone avionics using Altium Designer.",
-    //     technologies: ['Altium', 'STM32', 'Embedded C'],
-    //     images: [],
-    //     videos: [],
-    //     embeds: [],
-    //     links: [
-    //       { name: 'Design Team Website', url: '' }
-    //     ]
-    //   }
-    // },
     // {
     //   id: 15,
     //   title: 'Parking Slot Detection',
@@ -452,24 +572,7 @@ export class PcComponent {
     //   }
     // },
     {
-      id: 16,
-      title: 'Robotic Mouse',
-      caption: 'AI powered robotic mouse toy for cats',
-      thumbnailUrl: 'assets/pc/projects/robotic-mouse/rendered-mouse-shell.jpeg',
-      details: {
-        description: "I'm developing an AI-powered robotic mouse cat toy using Raspberry Pi, computer vision, and reinforcement learning. The prototype includes a 3D-printed enclosure with a built-in treat dispenser, USB-C charging, and weighted internal mounts for stability.",
-        technologies: ['Raspberry Pi', 'Python', 'OpenCV', 'Embedded Systems'],
-        images: [
-          'assets/pc/projects/robotic-mouse/cross-section-diagram.jpg',
-          'assets/pc/projects/robotic-mouse/rendered-mouse-shell.jpeg'
-        ],
-        videos: [],
-        embeds: [],
-        links: []
-      }
-    },
-    {
-      id: 18,
+      id: 19,
       title: 'FoodiEco',
       caption: 'Recipe app for healthier and eco friendly meals',
       thumbnailUrl: 'assets/pc/projects/foodieco/foodieco-logo.png',
@@ -495,7 +598,7 @@ export class PcComponent {
       }
     },
     {
-      id: 19,
+      id: 20,
       title: 'Feed the Child',
       caption: '2D platformer game',
       thumbnailUrl: 'assets/pc/projects/feed-the-child/feed-the-child-logo.png',
@@ -511,7 +614,7 @@ export class PcComponent {
       }
     },
     {
-      id: 20,
+      id: 21,
       title: '3D Projects',
       caption: '3D OnShape projects and designs',
       thumbnailUrl: 'assets/pc/projects/3d-projects/a1.png',
@@ -545,42 +648,6 @@ export class PcComponent {
         videos: [],
         embeds: [],
         links: []
-      }
-    },
-    {
-      id: 21,
-      title: 'ClockHacks',
-      caption: 'Hackathon Organizer',
-      thumbnailUrl: 'assets/pc/projects/clockhacks/logo.png',
-      details: {
-        description: 'I organized ClockHacks, the largest MLH-certified high school hackathon of 2023 with ~360 attendees, securing over $10,000 in sponsorships through a package I designed. I led workshops, opening/closing ceremonies, and invited guest speakers, while also creating all visual media including the logo, swag, banners, and promotional materials. A unique highlight was the 3-hour organizer hacking event, where my team built and live-streamed a base-10 clock using React, Tailwind, and JavaScript.',
-        technologies: ['JS', 'React', 'Tailwind', 'Netlify'],
-        images: [
-          'assets/pc/projects/clockhacks/better_clock1.png',
-          'assets/pc/projects/clockhacks/better_clock2.png',
-          'assets/pc/projects/clockhacks/discord_call.jpg',
-          'assets/pc/projects/clockhacks/ig_post.png',
-          'assets/pc/projects/clockhacks/shirt.png',
-          'assets/pc/projects/clockhacks/shirt2.png',
-          'assets/pc/projects/clockhacks/shirt3.png',
-          'assets/pc/projects/clockhacks/shirt4.png',
-          'assets/pc/projects/clockhacks/sticker1.png',
-          'assets/pc/projects/clockhacks/sticker2.png',
-          'assets/pc/projects/clockhacks/sticker3.png',
-          'assets/pc/projects/clockhacks/working.jpg'
-        ],
-        videos: [
-        ],
-        embeds: [
-          'https://youtu.be/Irh7pC81TMM'
-        ],
-        links: [
-          { name: 'Hackathon Website', url: 'https://github.com/example-scraper' },
-          { name: 'Organizer Project Website', url: 'https://better-clock.netlify.app/' },
-          { name: 'Organizer Project Devpost', url: 'https://devpost.com/software/better-clock' },
-          { name: 'Organizer Project GitHub', url: 'https://github.com/ClockHacks/organizer-project' },
-          { name: 'Organizer Project Strea', url: 'https://twitch.tv/clockhacks' },
-        ]
       }
     },
     {
@@ -620,7 +687,7 @@ export class PcComponent {
       return this.safeUrl('');
     }
     let embed = url;
-    // Normalize common YouTube URL formats to embed
+    // normalize common youtube url formats to embed
     try {
       const u = new URL(url, typeof window !== 'undefined' ? window.location.origin : 'http://localhost');
       const host = u.hostname.replace('www.', '');
@@ -645,7 +712,7 @@ export class PcComponent {
       const params = `rel=0&modestbranding=1&playsinline=1&enablejsapi=1${origin ? `&origin=${encodeURIComponent(origin)}` : ''}`;
       embed = `${embed}${hasQuery ? '&' : '?'}${params}`;
     } catch {
-      // Fallback: still try to trust original URL
+      // fallback: still try to trust original url
     }
     return this.safeUrl(embed);
   }

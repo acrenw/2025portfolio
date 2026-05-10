@@ -83,13 +83,28 @@
           <p>{{ selectedProject.details.description }}</p>
         </div>
 
+        <!-- Embeds Section -->
+        <div *ngIf="selectedProject.details.embeds.length > 0" class="content-section">
+          <h3>Interactive Demos</h3>
+          <div class="embeds-container">
+            <iframe
+              *ngFor="let embed of selectedProject.details.embeds"
+              [src]="getEmbedUrl(embed)"
+              class="content-embed"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
         <!-- Images Section -->
         <div *ngIf="selectedProject.details.images.length > 0" class="content-section">
           <h3>Images</h3>
           <div class="images-grid">
-            <img 
-              *ngFor="let image of selectedProject.details.images" 
-              [src]="image" 
+            <img
+              *ngFor="let image of selectedProject.details.images"
+              [src]="image"
               [alt]="selectedProject.title + ' image'"
               class="content-image"
               loading="lazy">
@@ -100,28 +115,13 @@
         <div *ngIf="selectedProject.details.videos.length > 0" class="content-section">
           <h3>Videos</h3>
           <div class="videos-container">
-            <video 
-              *ngFor="let video of selectedProject.details.videos" 
-              [src]="video" 
+            <video
+              *ngFor="let video of selectedProject.details.videos"
+              [src]="video"
               controls
               class="content-video">
               Your browser does not support the video tag.
             </video>
-          </div>
-        </div>
-
-        <!-- Embeds Section -->
-        <div *ngIf="selectedProject.details.embeds.length > 0" class="content-section">
-          <h3>Interactive Demos</h3>
-          <div class="embeds-container">
-            <iframe 
-              *ngFor="let embed of selectedProject.details.embeds" 
-              [src]="getEmbedUrl(embed)" 
-              class="content-embed"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
           </div>
         </div>
 

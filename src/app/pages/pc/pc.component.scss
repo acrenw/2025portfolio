@@ -62,7 +62,7 @@
 
 .tab-button {
   background: transparent;
-  color: rgb(174, 174, 174);
+  color: #f5cf9d;
   padding: 12px 24px;
   border: none;
   cursor: pointer;
@@ -91,7 +91,7 @@
 .internship-card {
   display: flex;
   align-items: center;
-  background: #e0e0e0;
+  background: #f5cf9d;
   backdrop-filter: blur(10px);
   border-radius: 15px;
   margin-bottom: 20px;
@@ -148,7 +148,7 @@
 }
 
 .project-card {
-  background: #e0e0e0;
+  background: #f5cf9d;
   backdrop-filter: blur(10px);
   border-radius: 15px;
   overflow: hidden;
@@ -264,7 +264,7 @@
 
 .project-header {
   margin-bottom: 25px;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid #f5cf9d;
   padding-bottom: 20px;
 }
 
@@ -282,10 +282,9 @@
 }
 
 .tech-tag {
-  background: #007bff;
+  background: #8f5538;
   color: white;
   padding: 4px 12px;
-  border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 500;
 }
@@ -318,7 +317,7 @@
   font-weight: 600;
   margin: 0 0 15px 0;
   color: #333;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #8f5538;
   padding-left: 15px;
 }
 
@@ -370,18 +369,17 @@
 
 .project-link {
   display: inline-block;
-  background: #f8f9fa;
-  color: #007bff;
+  background: #f5cf9d;
+  color: #8f5538;
   padding: 10px 20px;
-  border-radius: 25px;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
-  border: 2px solid #007bff;
+  border: 2px solid #8f5538;
 }
 
 .project-link:hover {
-  background: #007bff;
+  background: #8f5538;
   color: white;
   transform: translateY(-2px);
 }
