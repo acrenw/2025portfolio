@@ -163,10 +163,10 @@ export class PcComponent {
     {
       id: 1,
       title: 'RL Mouse Toy',
-      caption: 'ML-powered autonomous robotic mouse',
+      caption: 'ML autonomous robotic mouse',
       thumbnailUrl: 'assets/pc/projects/robotic-mouse/mouse-front.jpeg',
       details: {
-        description: "I built an ML-powered autonomous robotic mouse designed to chase and play with cats, running on a Raspberry Pi 5 with a Pi AI Camera for perception.\n\nThe system uses YOLOv8s for cat detection, feeding a SAC reinforcement learning agent that outputs motor commands, and an independent obstacle avoidance safety layer decoupled from the learned policy.\n\nThe SAC agent was trained in simulation for 400k episodes against a 5-state cat FSM calibrated from real cat video traces, using a composite reward function.\n\nOn the hardware side, dual L9110 motor drivers drive TT DC gear motors, an HC-SR04 ultrasonic sensor supports obstacle detection, and the system is powered by an 18650 LiPo cell through a boost/charge module. There's also a piezo buzzer for mimicking mouse squeaks and a servo that drops snacks when the mouse is captured.\n\nStill a lot of future work: new buck converter, reshape reward function, print an actual case.",
+        description: "I built an ML autonomous robotic mouse designed to chase and play with cats, running on a Raspberry Pi 5 with a Pi AI Camera for perception.\n\nThe system uses YOLOv8s for cat detection, feeding a SAC reinforcement learning agent that outputs motor commands, and an independent obstacle avoidance safety layer decoupled from the learned policy.\n\nThe SAC agent was trained in simulation for 400k episodes against a 5-state cat FSM calibrated from real cat video traces, using a composite reward function.\n\nOn the hardware side, dual L9110 motor drivers drive TT DC gear motors, an HC-SR04 ultrasonic sensor supports obstacle detection, and the system is powered by an 18650 LiPo cell through a boost/charge module. There's also a piezo buzzer for mimicking mouse squeaks and a servo that drops snacks when the mouse is captured.\n\nStill a lot of future work: new buck converter, reshape reward function, print an actual case.",
         technologies: ['Raspberry Pi', 'Python', 'OpenCV', 'Embedded Systems'],
         images: [
           'assets/pc/projects/robotic-mouse/miaomiao-and-xianxian-with-mouse.jpg',
@@ -177,7 +177,7 @@ export class PcComponent {
         ],
         videos: [],
         embeds: [
-          'https://youtu.be/UYDZvIIDUW4'
+          'https://youtu.be/01xguZA8GH0'
         ],
         links: [
           { name: 'GitHub', url: 'https://github.com/acrenw/robot-mouse' }

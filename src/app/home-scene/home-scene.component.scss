@@ -105,6 +105,7 @@
   left: 30%;
   width: 60%;
   height: 60%;
+  padding: 2% 3%;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -122,7 +123,7 @@
   }
 
   font-family: 'Press Start 2P', monospace;
-  font-size: clamp(7.5px, 1.5vw, 13.5px);
+  font-size: clamp(6px, 1.1vw, 10px);
   line-height: 1.8;
   color: #000000;
 
