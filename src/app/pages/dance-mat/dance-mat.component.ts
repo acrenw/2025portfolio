@@ -26,31 +26,15 @@ export class DanceMatComponent {
 
   danceContent: DanceContent[] = [
     {
+      id: 0,
+      title: 'Style Performance',
+      caption: '',
+      videoUrl: 'https://www.youtube.com/embed/JTBdci76Cpo',
+      thumbnailUrl: 'https://img.youtube.com/vi/JTBdci76Cpo/maxresdefault.jpg',
+      type: 'video'
+    },
+    {
       id: 1,
-      title: 'Accendio Group Photo',
-      caption: 'Group photo from Accendio dance performance in Kabukicho, Tokyo. I am the one in the top right with two purple bows in my hair.',
-      imageUrl: 'assets/dance-mat/accendio-group-photo.jpg',
-      thumbnailUrl: 'assets/dance-mat/accendio-group-photo.jpg',
-      type: 'image'
-    },
-    {
-      id: 2,
-      title: 'Baddie Group Photo',
-      caption: 'Group photo from Baddie dance performance at Lazardis Hall, Laurier University. I am the one in the bottom right with the baseball jacket and a tie.',
-      imageUrl: 'assets/dance-mat/baddie-group-photo.jpg',
-      thumbnailUrl: 'assets/dance-mat/baddie-group-photo.jpg',
-      type: 'image'
-    },
-    {
-      id: 3,
-      title: 'Kabukicho Group Photo',
-      caption: 'Group photo from Kabukicho dance performance. I am the one in the center with a purple bow and half my face covered.',
-      imageUrl: 'assets/dance-mat/kabukicho-group-photo.jpg',
-      thumbnailUrl: 'assets/dance-mat/kabukicho-group-photo.jpg',
-      type: 'image'
-    },
-    {
-      id: 4,
       title: 'Baddie Performance',
       caption: 'Dance performance video showcasing contemporary choreography. I am the one with a white skirt.',
       videoUrl: 'https://www.youtube.com/embed/Oxr0JxiVCso',
@@ -58,7 +42,7 @@ export class DanceMatComponent {
       type: 'video'
     },
     {
-      id: 5,
+      id: 2,
       title: 'Accendio Performance',
       caption: 'Group dance routine with synchronized movements.',
       videoUrl: 'https://www.youtube.com/embed/sajsWQKAiek',
@@ -66,15 +50,7 @@ export class DanceMatComponent {
       type: 'video'
     },
     {
-      id: 6,
-      title: 'Tambourine Choreography',
-      caption: 'Tambourine choreography by Senna from the NOA dance studio in Akihabara.',
-      videoUrl: 'https://www.youtube.com/embed/DWvmQFWLwLY',
-      thumbnailUrl: 'https://img.youtube.com/vi/DWvmQFWLwLY/maxresdefault.jpg',
-      type: 'video'
-    },
-    {
-      id: 7,
+      id: 3,
       title: 'Hands Up Dance Performance',
       caption: 'Live performance at the Chinese Student Association event, with friends from the Captiv8 Dance Crew.',
       videoUrl: 'https://www.youtube.com/embed/E6ZPFT1pL9c',
@@ -82,11 +58,43 @@ export class DanceMatComponent {
       type: 'video'
     },
     {
-      id: 8,
+      id: 4,
+      title: 'Baddie Group Photo',
+      caption: 'Group photo from Baddie dance performance at Lazardis Hall, Laurier University. I am the one in the bottom right with the baseball jacket and a tie.',
+      imageUrl: 'assets/dance-mat/baddie-group-photo.jpg',
+      thumbnailUrl: 'assets/dance-mat/baddie-group-photo.jpg',
+      type: 'image'
+    },
+    {
+      id: 5,
+      title: 'Kabukicho Group Photo',
+      caption: 'Group photo from Kabukicho dance performance. I am the one in the center with a purple bow and half my face covered.',
+      imageUrl: 'assets/dance-mat/kabukicho-group-photo.jpg',
+      thumbnailUrl: 'assets/dance-mat/kabukicho-group-photo.jpg',
+      type: 'image'
+    },
+    {
+      id: 6,
+      title: 'Accendio Group Photo',
+      caption: 'Group photo from Accendio dance performance in Kabukicho, Tokyo. I am the one in the top right with two purple bows in my hair.',
+      imageUrl: 'assets/dance-mat/accendio-group-photo.jpg',
+      thumbnailUrl: 'assets/dance-mat/accendio-group-photo.jpg',
+      type: 'image'
+    },
+    {
+      id: 7,
       title: 'Drip Dance Performance',
       caption: 'Live performance at the Chinese Student Association event, with friends from the Captiv8 Dance Crew.',
       videoUrl: 'https://www.youtube.com/embed/Ke0jjCL4Hg8',
       thumbnailUrl: 'https://img.youtube.com/vi/Ke0jjCL4Hg8/maxresdefault.jpg',
+      type: 'video'
+    },
+    {
+      id: 8,
+      title: 'Tambourine Choreography',
+      caption: 'Tambourine choreography by Senna from the NOA dance studio in Akihabara.',
+      videoUrl: 'https://www.youtube.com/embed/DWvmQFWLwLY',
+      thumbnailUrl: 'https://img.youtube.com/vi/DWvmQFWLwLY/maxresdefault.jpg',
       type: 'video'
     },
     {

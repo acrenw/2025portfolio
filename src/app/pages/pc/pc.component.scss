@@ -116,19 +116,19 @@
 }
 
 .internship-info {
-  padding: 20px;
+  padding: 20px 30px;
   flex: 1;
 }
 
 .internship-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin: 0 0 8px 0;
   color: #333;
 }
 
 .internship-date {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #666;
   margin: 0;
   font-weight: 500;
@@ -142,7 +142,7 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
   padding: 0 10px;
 }
@@ -172,18 +172,18 @@
 }
 
 .project-info {
-  padding: 20px;
+  padding: 20px 30px;
 }
 
 .project-title {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 8px 0;
   color: #333;
 }
 
 .project-caption {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: #666;
   margin: 0;
   line-height: 1.4;
@@ -257,7 +257,7 @@
 }
 
 .modal-body {
-  padding: 30px;
+  padding: 40px 100px;
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -269,7 +269,7 @@
 }
 
 .project-modal-title {
-  font-size: 2.2rem;
+  font-size: 1.0rem;
   font-weight: 600;
   margin: 0 0 15px 0;
   color: #333;
@@ -285,12 +285,12 @@
   background: #8f5538;
   color: white;
   padding: 4px 12px;
-  font-size: 0.85rem;
+  font-size: 0.5rem;
   font-weight: 500;
 }
 
 .internship-modal-date {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: #666;
   margin: 10px 0 0 0;
   font-weight: 500;
@@ -302,10 +302,11 @@
 }
 
 .project-description p {
-  font-size: 1.1rem;
+  font-size: 0.6rem;
   line-height: 1.7;
   color: #555;
   margin: 0;
+  white-space: pre-line;
 }
 
 .content-section {
@@ -313,7 +314,7 @@
 }
 
 .content-section h3 {
-  font-size: 1.4rem;
+  font-size: 0.8rem;
   font-weight: 600;
   margin: 0 0 15px 0;
   color: #333;
@@ -323,7 +324,7 @@
 
 .images-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
 }
 
@@ -374,6 +375,7 @@
   padding: 10px 20px;
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.6rem;
   transition: all 0.3s ease;
   border: 2px solid #8f5538;
 }
@@ -412,22 +414,26 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .modal-content {
     max-width: 95vw;
     max-height: 95vh;
   }
-  
+
   .modal-body {
     padding: 20px;
   }
-  
+
   .project-modal-title {
     font-size: 1.8rem;
   }
-  
+
   .images-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-info {
+    padding: 15px 20px;
   }
   
   .content-embed {

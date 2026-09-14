@@ -162,8 +162,98 @@ export class PcComponent {
   projects: Project[] = [
     {
       id: 1,
+      title: 'RL Mouse Toy',
+      caption: 'ML-powered autonomous robotic mouse',
+      thumbnailUrl: 'assets/pc/projects/robotic-mouse/mouse-front.jpeg',
+      details: {
+        description: "I built an ML-powered autonomous robotic mouse designed to chase and play with cats, running on a Raspberry Pi 5 with a Pi AI Camera for perception.\n\nThe system uses YOLOv8s for cat detection, feeding a SAC reinforcement learning agent that outputs motor commands, and an independent obstacle avoidance safety layer decoupled from the learned policy.\n\nThe SAC agent was trained in simulation for 400k episodes against an 8-state cat FSM calibrated from real cat video traces, using a composite reward function.\n\nOn the hardware side, dual L9110 motor drivers drive TT DC gear motors, an HC-SR04 ultrasonic sensor supports obstacle detection, and the system is powered by an 18650 LiPo cell through a boost/charge module. There's also a piezo buzzer for mimicking mouse squeaks and a servo that drops snacks when the mouse is captured.\n\nStill a lot of future work: new buck converter, reshape reward function, print an actual case.",
+        technologies: ['Raspberry Pi', 'Python', 'OpenCV', 'Embedded Systems'],
+        images: [
+          'assets/pc/projects/robotic-mouse/miaomiao-and-xianxian-with-mouse.jpg',
+          'assets/pc/projects/robotic-mouse/mouse-front.jpeg',
+          'assets/pc/projects/robotic-mouse/mouse-back.jpeg',
+          'assets/pc/projects/robotic-mouse/mouse-disassembled-painted.jpeg',
+          'assets/pc/projects/robotic-mouse/mouse-disassembled-not-painted.jpeg',
+        ],
+        videos: [],
+        embeds: [
+          'https://youtu.be/UYDZvIIDUW4'
+        ],
+        links: [
+          { name: 'GitHub', url: 'https://github.com/acrenw/robot-mouse' }
+        ]
+      }
+    },
+    {
+      id: 2,
+      title: 'Lingoat',
+      caption: 'Language learning Chrome Extension',
+      thumbnailUrl: 'assets/pc/projects/lingoat/small-promo-tile.png',
+      details: {
+        description: 'I built a dual subtitle chrome extension that supports an AI tutor, real-time translation, built in notes, bilingual support, and more.',
+        technologies: ['JavaScript', 'Chrome APIs', 'Groq Whisper API'],
+        images: [
+          'assets/pc/projects/lingoat/feature-1.png',
+          'assets/pc/projects/lingoat/feature-2.png',
+          'assets/pc/projects/lingoat/feature-3.png',
+          'assets/pc/projects/lingoat/feature-4.png',
+          'assets/pc/projects/lingoat/feature-5.png',
+          'assets/pc/projects/lingoat/popup.png'
+        ],
+        videos: [],
+        embeds: [
+          'https://youtu.be/SK50lifaYlY'
+        ],
+        links: [
+          { name: 'Chrome Web Store Listing', url: 'https://chromewebstore.google.com/detail/lingoat/kioeehgelhbfegekjnhphjnadonbeimj' },
+          { name: 'Extension Homepage', url: 'https://acrenw.github.io/lingoat/src/onboarding/welcome.html' },
+          { name: 'GitHub', url: 'https://github.com/acrenw/lingoat' },
+        ]
+      }
+    },
+    {
+      id: 3,
+      title: 'Embedded Drone Development',
+      caption: 'Waterloo Aerial Robotics Group',
+      thumbnailUrl: 'assets/pc/projects/warg/warg-drone.jpg',
+      details: {
+        description: 'At the University of Waterloo, I\'m part of the embedded team in WARG, where I Built a HIL testbench for WARG\'s ZeroPilot flight controller.\n\nI migrated it from QUARC/Simulink to a Raspberry Pi + ESP32-S3 firmware stack using Python, writing the ESP32 emulator firmware (fake sensor emulation over I2C/UART, JSBSim physics integration).',
+        technologies: ['Raspberry Pi 5', 'ESP32', 'MATLAB', 'Simulink', 'QUARC', 'UART', 'I2C'],
+        images: [
+          'assets/pc/projects/warg/warg-hil-selfie.jpeg',
+          'assets/pc/projects/warg/warg-plane.jpeg',
+          'assets/pc/projects/warg/warg-oscilloscope.jpeg',
+        ],
+        videos: [
+          'assets/pc/projects/warg/warg-plane-testing.MOV',
+        ],
+        embeds: [],
+        links: [
+          { name: 'WARG Website', url: 'https://www.uwarg.com/' }
+        ]
+      }
+    },
+    {
+      id: 4,
+      title: 'Occupi',
+      caption: 'Smart parking system that shows drivers open spots in real time',
+      thumbnailUrl: 'assets/pc/projects/occupi/velocity-slide.jpeg',
+      details: {
+        description: "Occupi is an on-going business idea that I pitched at velocity.\n\nIt's a hardware-agnostic, dual-sensor smart parking system. It uses flush-mounted geomagnetic sensors, chosen to battle against Canadian winters, paired with camera based computer vision for covered structures where plate level enforcement data is needed.\n\nData flows in a hub-and-spoke model: Sensor → LoRaWAN/BLE → Gateway Hub → Cloud Database → App.",
+        technologies: ['Geomagnetic Sensors', 'Computer Vision', 'LoRaWAN', 'BLE', 'Cellular (LTE)', 'IoT Gateway Hub', 'Cloud Database'],
+        images: [
+          'assets/pc/projects/occupi/velocity-lanyard.jpeg',
+          'assets/pc/projects/occupi/velocity-slide.jpeg',
+        ],
+        videos: [],
+        embeds: [],
+        links: []
+      }
+    },
+    {
+      id: 5,
       title: 'Fartnight VR Game',
-      caption: 'A VR game I made for a Game Jam.',
+      caption: 'VR game',
       thumbnailUrl: 'assets/pc/projects/fartnight/Poster.png',
       details: {
         description: 'I developed a VR game in Unity in 3 days: independently modelled, rigged, and animated characters in Blender and Unity with full animation cycles, implemented gesture-based combat, auto generating maze layout that always guarantees a safe path, wired up immersive audio, and built audio-proximity-triggered attacks.',
@@ -184,32 +274,7 @@ export class PcComponent {
       }
     },
     {
-      id: 2,
-      title: 'Lingoat',
-      caption: 'Language learning Chrome Extension',
-      thumbnailUrl: 'assets/pc/projects/lingoat/small-promo-tile.png',
-      details: {
-        description: 'I built a dual subtitle chrom extension that supports an AI tutor, real-time translation, built in notes, bilingual support, and more.',
-        technologies: ['JavaScript', 'Chrome APIs', 'Groq Whisper API'],
-        images: [
-          'assets/pc/projects/lingoat/feature-1.png',
-          'assets/pc/projects/lingoat/feature-2.png',
-          'assets/pc/projects/lingoat/feature-3.png',
-          'assets/pc/projects/lingoat/feature-4.png',
-          'assets/pc/projects/lingoat/feature-5.png',
-          'assets/pc/projects/lingoat/popup.png'
-        ],
-        videos: [],
-        embeds: [],
-        links: [
-          { name: 'Chrome Web Store Listing', url: 'https://chromewebstore.google.com/detail/lingoat/kioeehgelhbfegekjnhphjnadonbeimj' },
-          { name: 'Extension Homepage', url: 'https://acrenw.github.io/lingoat/src/onboarding/welcome.html' },
-          { name: 'GitHub', url: 'https://github.com/acrenw/lingoat' },
-        ]
-      }
-    },
-    {
-      id: 3,
+      id: 6,
       title: 'Try It On',
       caption: 'AR fashion try-on iOS app',
       thumbnailUrl: 'assets/pc/projects/try-it-on/try-it-on-ss.png',
@@ -223,59 +288,6 @@ export class PcComponent {
         ],
         embeds: [],
         links: [] // TODO: push the code so i can add the github
-      }
-    },
-    {
-      id: 4,
-      title: 'RL Mouse Toy',
-      caption: 'AI powered robotic mouse toy for cats',
-      thumbnailUrl: 'assets/pc/projects/robotic-mouse/rendered-mouse-shell.jpeg',
-      details: {
-        description: "I'm developing an AI-powered robotic mouse cat toy using Raspberry Pi 5, Raspberry Pi AI camera, computer vision, and reinforcement learning. The prototype includes a 3D-printed enclosure with a built-in treat dispenser, USB-C charging, and weighted internal mounts for stability.",
-        technologies: ['Raspberry Pi', 'Python', 'OpenCV', 'Embedded Systems'],
-        images: [
-          'assets/pc/projects/robotic-mouse/cross-section-diagram.jpg',
-          'assets/pc/projects/robotic-mouse/rendered-mouse-shell.jpeg'
-        ],
-        videos: [],
-        embeds: [],
-        links: []
-      }
-    },
-    {
-      id: 5,
-      title: 'Cellular Car',
-      caption: 'Remote controlled car via cellular network',
-      thumbnailUrl: 'assets/pc/projects/cellular-car/trump-front.png',
-      details: {
-        description: 'Built a cellular-controlled RC car with a friend on ESP32 with dual control modes, SMS command parsing and TCP socket streaming, using a SIM7670G LTE module.',
-        technologies: ['C++', 'ESP32', 'SIM7670G'],
-        images: [
-          'assets/pc/projects/cellular-car/trump-bottom.png',
-          'assets/pc/projects/cellular-car/trump-front.png',
-          'assets/pc/projects/cellular-car/trump-side.png'
-        ],
-        videos: [],
-        embeds: [
-          'https://www.youtube.com/watch?v=0MTZOHsFFyQ'
-        ],
-        links: [] // TODO: push the code so i can add the github
-      }
-    },
-    {
-      id: 6,
-      title: 'Embedded Drone Development',
-      caption: 'Waterloo Aerial Robotics Group',
-      thumbnailUrl: 'assets/pc/projects/pcb-design/warg-drone.jpg',
-      details: {
-        description: 'At the University of Waterloo, I\'m part of the embedded team in WARG, where I built a Hardware-in-the-Loop testbench for a UAV flight controller, streaming simulated flight state and emulating a power sensor.',
-        technologies: ['Raspberry Pi 5', 'ESP32', 'MATLAB', 'Simulink', 'QUARC', 'UART', 'I2C'],
-        images: [],
-        videos: [],
-        embeds: [],
-        links: [
-          { name: 'WARG Website', url: 'https://www.uwarg.com/' }
-        ]
       }
     },
     {
@@ -555,22 +567,6 @@ export class PcComponent {
         ]
       }
     },
-    // {
-    //   id: 15,
-    //   title: 'Parking Slot Detection',
-    //   caption: 'Parking slot detection and mapping tool',
-    //   thumbnailUrl: '',
-    //   details: {
-    //     description: "I'm developing an AI-powered smart parking system that uses transfer learning and bounding-box object detection in Python with TensorFlow and OpenCV to recognize parking spaces. Ongoing work includes backend integration for stall mapping, multi-camera fusion, Google Maps API, and Bluetooth-based underground lot positioning, and I'm currently in discussions with industry partners for potential deployment.",
-    //     technologies: ['Python', 'OpenCV', 'TensorFlow'],
-    //     images: [],
-    //     videos: [],
-    //     embeds: [],
-    //     links: [
-    //       { name: 'GitHub Repository', url: '' }
-    //     ]
-    //   }
-    // },
     {
       id: 19,
       title: 'FoodiEco',
