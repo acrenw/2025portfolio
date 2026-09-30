@@ -6,17 +6,17 @@
     
     <!-- Tab Navigation -->
     <div class="tab-navigation">
-      <button 
-        class="tab-button" 
-        [class.active]="activeTab === 'covers'"
-        (click)="setActiveTab('covers')">
-        Piano Covers
-      </button>
-      <button 
-        class="tab-button" 
+      <button
+        class="tab-button"
         [class.active]="activeTab === 'composed'"
         (click)="setActiveTab('composed')">
         Composed Pieces
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="activeTab === 'covers'"
+        (click)="setActiveTab('covers')">
+        Piano Covers
       </button>
     </div>
 
@@ -36,6 +36,7 @@
         <div class="content-overlay">
           <h3 class="content-title">{{ content.title }}</h3>
           <div class="play-button" *ngIf="content.type === 'video'">▶</div>
+          <div class="play-button" *ngIf="content.type === 'audio'">♪</div>
         </div>
       </div>
     </div>
@@ -66,12 +67,27 @@
           </video>
         </ng-container>
         <!-- Image Content -->
-        <img 
+        <img
           *ngIf="selectedContent.type === 'image'"
-          [src]="selectedContent.imageUrl" 
+          [src]="selectedContent.imageUrl"
           [alt]="selectedContent.title"
           class="modal-image"
           loading="lazy">
+        <!-- Audio Content -->
+        <ng-container *ngIf="selectedContent.type === 'audio'">
+          <iframe
+            *ngIf="selectedContent.pdfUrl"
+            [src]="safeUrl(selectedContent.pdfUrl!)"
+            class="modal-pdf">
+          </iframe>
+          <audio
+            *ngIf="selectedContent.audioUrl"
+            [src]="selectedContent.audioUrl"
+            controls
+            class="modal-audio">
+            Your browser does not support the audio element.
+          </audio>
+        </ng-container>
         <div class="modal-info">
           <h2 class="modal-title">{{ selectedContent.title }}</h2>
           <p class="modal-caption">{{ selectedContent.caption }}</p>

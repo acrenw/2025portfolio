@@ -47,11 +47,47 @@ export class PcComponent {
   showProjectModal = false;
   showInternshipModal = false;
 
-
-  // Sample internship data - replace with your actual internships
   internships: Internship[] = [
     {
       id: 1,
+      title: 'Undergraduate Research Assistant',
+      date: 'September 2026 - Present',
+      thumbnailUrl: 'assets/pc/internships/ura/Roboracer.png',
+      details: {
+        description: "As an undergraduate research assistant, I'm developing a reinforcement learning pipeline to train an autonomous racing policy in simulation and deploy it on a physical RoboRacer car.\n\nI'm working in NVIDIA Isaac Sim and Isaac Lab, studying the simulator's control interface, surface-friction modelling and physics tuning.\n\nI'm building an RL training loop with skrl on an off-road track. This includes designing the reward function (for example, penalising closeness to track boundaries) and implementing the observations it depends on.\n\nI verify those observations against teleoperated driving data before training.\n\nI'll then extend the policy to a Soft Actor-Critic Mixture-of-Experts (SAC-MoE) architecture to handle the abrupt dynamics changes caused by varying surface friction.\n\nThe final stage is sim-to-real deployment on the physical car through a ROS 2 software stack.",
+        technologies: ['Isaac Sim', 'Isaac Lab', 'ROS 2', 'Python', 'PyTorch', 'skrl', 'SAC', 'Reinforcement Learning'],
+        images: [
+          'assets/pc/internships/ura/Roboracer.png'
+        ],
+        videos: [],
+        embeds: [],
+        links: []
+      }
+    },
+    {
+      id: 2,
+      title: 'Project Manager, ZeroPilot HIL',
+      date: 'September 2024 - Present',
+      thumbnailUrl: 'assets/pc/internships/warg/warg-drone.jpg',
+      details: {
+        description: 'At the University of Waterloo, I\'m a project manager and one of the leads of the Waterloo Aerial Robotics Group (WARG). I lead the ZeroPilot HIL (Hardware-in-the-Loop) project, where I built a HIL testbench for WARG\'s ZeroPilot flight controller.\n\nI migrated it from QUARC/Simulink to a Raspberry Pi + ESP32-S3 firmware stack using Python, writing the ESP32 emulator firmware (fake sensor emulation over I2C/UART, JSBSim physics integration).',
+        technologies: ['Raspberry Pi 5', 'ESP32', 'MATLAB', 'Simulink', 'QUARC', 'UART', 'I2C'],
+        images: [
+          'assets/pc/internships/warg/warg-hil-selfie.jpeg',
+          'assets/pc/internships/warg/warg-plane.jpeg',
+          'assets/pc/internships/warg/warg-oscilloscope.jpeg',
+        ],
+        videos: [
+          'assets/pc/internships/warg/warg-plane-testing.MOV',
+        ],
+        embeds: [],
+        links: [
+          { name: 'WARG Website', url: 'https://www.uwarg.com/' }
+        ]
+      }
+    },
+    {
+      id: 3,
       title: 'LiftWerx',
       date: 'January 2026 - April 2025',
       thumbnailUrl: 'assets/pc/internships/liftwerx/Liftwerx_Logo.jpg',
@@ -69,7 +105,7 @@ export class PcComponent {
       }
     },
     {
-      id: 2,
+      id: 4,
       title: 'Full Stack Developer',
       date: 'May 2025 - August 2025',
       thumbnailUrl: 'assets/pc/internships/city-of-waterloo/city-of-waterloo-logo.png',
@@ -88,7 +124,7 @@ export class PcComponent {
       }
     },
     {
-      id: 3,
+      id: 5,
       title: 'Robotics Software Intern',
       date: 'June 2024 - December 2024',
       thumbnailUrl: 'assets/pc/internships/rapyuta-robotics/rr-logo.jpeg',
@@ -107,7 +143,7 @@ export class PcComponent {
       }
     },
     {
-      id: 4,
+      id: 6,
       title: 'Embedded Programmer + Graphic Designer',
       date: 'June 2022 - September 2023',
       thumbnailUrl: 'assets/pc/internships/loopx/loopx-logo.jpeg',
@@ -140,7 +176,7 @@ export class PcComponent {
       }
     },
     {
-      id: 5,
+      id: 7,
       title: 'Full Stack Developer',
       date: 'June 2022 - October 2022',
       thumbnailUrl: 'assets/pc/internships/openprinciples/openprinciples-logo.png',
@@ -213,28 +249,6 @@ export class PcComponent {
     },
     {
       id: 3,
-      title: 'Embedded Drone Development',
-      caption: 'Waterloo Aerial Robotics Group',
-      thumbnailUrl: 'assets/pc/projects/warg/warg-drone.jpg',
-      details: {
-        description: 'At the University of Waterloo, I\'m part of the embedded team in WARG, where I Built a HIL testbench for WARG\'s ZeroPilot flight controller.\n\nI migrated it from QUARC/Simulink to a Raspberry Pi + ESP32-S3 firmware stack using Python, writing the ESP32 emulator firmware (fake sensor emulation over I2C/UART, JSBSim physics integration).',
-        technologies: ['Raspberry Pi 5', 'ESP32', 'MATLAB', 'Simulink', 'QUARC', 'UART', 'I2C'],
-        images: [
-          'assets/pc/projects/warg/warg-hil-selfie.jpeg',
-          'assets/pc/projects/warg/warg-plane.jpeg',
-          'assets/pc/projects/warg/warg-oscilloscope.jpeg',
-        ],
-        videos: [
-          'assets/pc/projects/warg/warg-plane-testing.MOV',
-        ],
-        embeds: [],
-        links: [
-          { name: 'WARG Website', url: 'https://www.uwarg.com/' }
-        ]
-      }
-    },
-    {
-      id: 4,
       title: 'Occupi',
       caption: 'Smart parking system that shows drivers open spots in real time',
       thumbnailUrl: 'assets/pc/projects/occupi/velocity-slide.jpeg',
@@ -251,7 +265,7 @@ export class PcComponent {
       }
     },
     {
-      id: 5,
+      id: 4,
       title: 'Fartnight VR Game',
       caption: 'VR game',
       thumbnailUrl: 'assets/pc/projects/fartnight/Poster.png',
@@ -274,7 +288,7 @@ export class PcComponent {
       }
     },
     {
-      id: 6,
+      id: 5,
       title: 'Try It On',
       caption: 'AR fashion try-on iOS app',
       thumbnailUrl: 'assets/pc/projects/try-it-on/try-it-on-ss.png',
@@ -291,7 +305,7 @@ export class PcComponent {
       }
     },
     {
-      id: 7,
+      id: 6,
       title: 'Movie Recommender',
       caption: 'Movie recommender systems',
       thumbnailUrl: 'assets/pc/projects/movie-recommender/movie-recommender-tn.png',
@@ -310,7 +324,7 @@ export class PcComponent {
       }
     },
     {
-      id: 8,
+      id: 7,
       title: 'Image Compression',
       caption: 'Image compression algorithm',
       thumbnailUrl: 'assets/pc/projects/image-compression/IMG_2848.jpg',
@@ -330,7 +344,7 @@ export class PcComponent {
       }
     },
     {
-      id: 9,
+      id: 8,
       title: 'ClockHacks',
       caption: 'Hackathon Organizer',
       thumbnailUrl: 'assets/pc/projects/clockhacks/logo.png',
@@ -366,7 +380,7 @@ export class PcComponent {
       }
     },
     {
-      id: 10,
+      id: 9,
       title: 'ReadBetter',
       caption: 'Bionic reading web app',
       thumbnailUrl: 'assets/pc/projects/readbetter/readbetter-logo.png',
@@ -390,7 +404,7 @@ export class PcComponent {
       }
     },
     {
-      id: 11,
+      id: 10,
       title: 'ShoeBill',
       caption: 'Facial expression tracking webapp to prevent rage gaming',
       thumbnailUrl: 'assets/pc/projects/shoebill/shoebill-logo.png',
@@ -416,7 +430,7 @@ export class PcComponent {
       }
     },
     {
-      id: 12,
+      id: 11,
       title: 'Remindicine',
       caption: 'Portable smart pillbox',
       thumbnailUrl: 'assets/pc/projects/remindicine/remindicine-tn.png',
@@ -434,7 +448,7 @@ export class PcComponent {
       }
     },
     {
-      id: 13,
+      id: 12,
       title: 'HealThyme',
       caption: 'Web app for finding closest health clinics',
       thumbnailUrl: 'assets/pc/projects/healthyme/healthyme-logo.png',
@@ -464,7 +478,7 @@ export class PcComponent {
       }
     },
     {
-      id: 14,
+      id: 13,
       title: 'OSTranslate',
       caption: 'Web app for summarization and translation of any media',
       thumbnailUrl: 'assets/pc/projects/ostranslate/ostranslate-logo.png',
@@ -485,7 +499,7 @@ export class PcComponent {
       }
     },
     {
-      id: 15,
+      id: 14,
       title: 'SignLingo',
       caption: 'Sign language translator and learning software',
       thumbnailUrl: 'assets/pc/projects/signlingo/signlingo-logo.png',
@@ -506,7 +520,7 @@ export class PcComponent {
       }
     },
     {
-      id: 16,
+      id: 15,
       title: 'Slouchn\'t',
       caption: 'CV Slouching detection program',
       thumbnailUrl: 'assets/pc/projects/slouchnt/slouchnt-logo.png',
@@ -532,7 +546,7 @@ export class PcComponent {
       }
     },
     {
-      id: 17,
+      id: 16,
       title: 'To Do List',
       caption: 'To do list iOS app',
       thumbnailUrl: 'assets/pc/projects/to-do-list/to-do-list-logo.png',
@@ -550,7 +564,7 @@ export class PcComponent {
       }
     },
     {
-      id: 18,
+      id: 17,
       title: 'VR Gesture Recognition',
       caption: 'RealityLabs',
       thumbnailUrl: 'assets/pc/projects/vr-gesture-recognition/gesture-ss.png',
@@ -568,7 +582,7 @@ export class PcComponent {
       }
     },
     {
-      id: 19,
+      id: 18,
       title: 'FoodiEco',
       caption: 'Recipe app for healthier and eco friendly meals',
       thumbnailUrl: 'assets/pc/projects/foodieco/foodieco-logo.png',
@@ -594,7 +608,7 @@ export class PcComponent {
       }
     },
     {
-      id: 20,
+      id: 19,
       title: 'Feed the Child',
       caption: '2D platformer game',
       thumbnailUrl: 'assets/pc/projects/feed-the-child/feed-the-child-logo.png',
@@ -610,7 +624,7 @@ export class PcComponent {
       }
     },
     {
-      id: 21,
+      id: 20,
       title: '3D Projects',
       caption: '3D OnShape projects and designs',
       thumbnailUrl: 'assets/pc/projects/3d-projects/a1.png',
@@ -647,7 +661,7 @@ export class PcComponent {
       }
     },
     {
-      id: 22,
+      id: 21,
       title: 'Data Colonialism Research Paper',
       caption: 'Data colonialism research paper pertaining to Meta',
       thumbnailUrl: 'assets/pc/projects/data-colonialism-research-paper/infographic.png',

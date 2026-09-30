@@ -107,10 +107,11 @@ export class HomeSceneComponent implements OnInit, OnDestroy {
   private bgImage!: HTMLImageElement;
   private bgGlowImage!: HTMLImageElement;
   private playerImage!: HTMLImageElement;
+  private playerSprites: { [key: string]: HTMLImageElement } = {};
   private speechBubbleImage!: HTMLImageElement;
   private profileImage!: HTMLImageElement;
   private imagesLoaded = 0;
-  private totalImages = 5;
+  private totalImages = 12;
   private imagesReady = false;
   
   // popup text things
@@ -181,15 +182,26 @@ P.S. You can find more technical details on my computer.`;
     };
     this.bgGlowImage.src = 'assets/images/home-bg-glow.png';
     
-    // load player
-    this.playerImage = new Image();
-    this.playerImage.onload = () => this.onImageLoad();
-    this.playerImage.onerror = () => {
-      console.error('Failed to load player image:', this.playerImageSrc);
-      this.onImageLoad();
-    };
-    this.playerImage.src = this.playerImageSrc;
-    
+    // preload all player sprites
+    const spritePaths = [
+      'assets/images/player-front-up.PNG',
+      'assets/images/player-front-down.PNG',
+      'assets/images/player-back-up.PNG',
+      'assets/images/player-back-down.PNG',
+      'assets/images/player-left-up.PNG',
+      'assets/images/player-left-down.PNG',
+      'assets/images/player-right-up.PNG',
+      'assets/images/player-right-down.PNG',
+    ];
+    for (const path of spritePaths) {
+      const img = new Image();
+      img.onload = () => this.onImageLoad();
+      img.onerror = () => this.onImageLoad();
+      img.src = path;
+      this.playerSprites[path] = img;
+    }
+    this.playerImage = this.playerSprites[this.playerImageSrc];
+
     // load speech bubble
     this.speechBubbleImage = new Image();
     this.speechBubbleImage.onload = () => this.onImageLoad();
@@ -260,22 +272,22 @@ P.S. You can find more technical details on my computer.`;
     // movement controls, wasd or arrow keys
     if (this.keys['w'] || this.keys['arrowup']) {
       this.playerY -= this.playerSpeed;
-      this.playerImage.src = 'assets/images/player-back-up.PNG';
+      this.playerImage = this.playerSprites['assets/images/player-back-up.PNG'];
       this.playerFacing = 'up';
     }
     if (this.keys['s'] || this.keys['arrowdown']) {
       this.playerY += this.playerSpeed;
-      this.playerImage.src = 'assets/images/player-front-up.PNG';
+      this.playerImage = this.playerSprites['assets/images/player-front-up.PNG'];
       this.playerFacing = 'down';
     }
     if (this.keys['a'] || this.keys['arrowleft']) {
       this.playerX -= this.playerSpeed;
-      this.playerImage.src = 'assets/images/player-left-up.PNG';
+      this.playerImage = this.playerSprites['assets/images/player-left-up.PNG'];
       this.playerFacing = 'left';
     }
     if (this.keys['d'] || this.keys['arrowright']) {
       this.playerX += this.playerSpeed;
-      this.playerImage.src = 'assets/images/player-right-up.PNG';
+      this.playerImage = this.playerSprites['assets/images/player-right-up.PNG'];
       this.playerFacing = 'right';
     }
 
@@ -346,22 +358,23 @@ P.S. You can find more technical details on my computer.`;
   }
 
   private togglePlayer() {
-    if (this.playerImage.src.includes('front-up')) {
-      this.playerImage.src = 'assets/images/player-front-down.PNG';
-    } else if (this.playerImage.src.includes('front-down')) {
-      this.playerImage.src = 'assets/images/player-front-up.PNG';
-    } else if (this.playerImage.src.includes('back-up')) {
-      this.playerImage.src = 'assets/images/player-back-down.PNG';
-    } else if (this.playerImage.src.includes('back-down')) {
-      this.playerImage.src = 'assets/images/player-back-up.PNG';
-    } else if (this.playerImage.src.includes('left-up')) {
-      this.playerImage.src = 'assets/images/player-left-down.PNG';
-    } else if (this.playerImage.src.includes('left-down')) {
-      this.playerImage.src = 'assets/images/player-left-up.PNG';
-    } else if (this.playerImage.src.includes('right-up')) {
-      this.playerImage.src = 'assets/images/player-right-down.PNG';
-    } else if (this.playerImage.src.includes('right-down')) {
-      this.playerImage.src = 'assets/images/player-right-up.PNG';
+    const src = this.playerImage.src;
+    if (src.includes('front-up')) {
+      this.playerImage = this.playerSprites['assets/images/player-front-down.PNG'];
+    } else if (src.includes('front-down')) {
+      this.playerImage = this.playerSprites['assets/images/player-front-up.PNG'];
+    } else if (src.includes('back-up')) {
+      this.playerImage = this.playerSprites['assets/images/player-back-down.PNG'];
+    } else if (src.includes('back-down')) {
+      this.playerImage = this.playerSprites['assets/images/player-back-up.PNG'];
+    } else if (src.includes('left-up')) {
+      this.playerImage = this.playerSprites['assets/images/player-left-down.PNG'];
+    } else if (src.includes('left-down')) {
+      this.playerImage = this.playerSprites['assets/images/player-left-up.PNG'];
+    } else if (src.includes('right-up')) {
+      this.playerImage = this.playerSprites['assets/images/player-right-down.PNG'];
+    } else if (src.includes('right-down')) {
+      this.playerImage = this.playerSprites['assets/images/player-right-up.PNG'];
     }
   }
 
@@ -651,9 +664,10 @@ P.S. You can find more technical details on my computer.`;
 
       const isNear = this.isPlayerNearObject(obj);
       const isFacing = this.isPlayerFacingObject(obj);
-      console.log(`Object ${obj.name}: near=${isNear}, facing=${isFacing}`);
+      const isOverlapping = this.isPlayerOverlappingObject(obj);
+      console.log(`Object ${obj.name}: near=${isNear}, facing=${isFacing}, overlapping=${isOverlapping}`);
 
-      if (isNear && isFacing) {
+      if (isOverlapping || (isNear && isFacing)) {
         const distance = this.getDistanceToObject(obj);
         if (!closest || distance < closest.distance) {
           closest = { obj, distance };
@@ -713,6 +727,20 @@ P.S. You can find more technical details on my computer.`;
 
   private isPlayerNearObject(obj: any): boolean {
     return this.getDistanceToObject(obj) < this.INTERACTION_RANGE;
+  }
+
+  private isPlayerOverlappingObject(obj: any): boolean {
+    const bgScale = 0.8;
+    const bgWorldX = (this.WORLD_WIDTH - this.WORLD_WIDTH * bgScale) / 2;
+    const bgWorldY = (this.WORLD_HEIGHT - this.WORLD_HEIGHT * bgScale) / 2;
+
+    const objWorldX = bgWorldX + obj.x;
+    const objWorldY = bgWorldY + obj.y;
+
+    return this.playerX < objWorldX + obj.width &&
+           this.playerX + this.playerWidth > objWorldX &&
+           this.playerY < objWorldY + obj.height &&
+           this.playerY + this.playerHeight > objWorldY;
   }
 
   private isPlayerFacingObject(obj: any): boolean {
@@ -838,16 +866,16 @@ P.S. You can find more technical details on my computer.`;
   private updatePlayerImage() {
     switch (this.playerFacing) {
       case 'up':
-        this.playerImage.src = 'assets/images/player-back-up.PNG';
+        this.playerImage = this.playerSprites['assets/images/player-back-up.PNG'];
         break;
       case 'down':
-        this.playerImage.src = 'assets/images/player-front-up.PNG';
+        this.playerImage = this.playerSprites['assets/images/player-front-up.PNG'];
         break;
       case 'left':
-        this.playerImage.src = 'assets/images/player-left-up.PNG';
+        this.playerImage = this.playerSprites['assets/images/player-left-up.PNG'];
         break;
       case 'right':
-        this.playerImage.src = 'assets/images/player-right-up.PNG';
+        this.playerImage = this.playerSprites['assets/images/player-right-up.PNG'];
         break;
     }
   }

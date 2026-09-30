@@ -10,8 +10,10 @@ interface PianoContent {
   caption: string;
   videoUrl?: string;
   imageUrl?: string;
+  audioUrl?: string;
+  pdfUrl?: string;
   thumbnailUrl: string;
-  type: 'video' | 'image';
+  type: 'video' | 'image' | 'audio';
   category: 'covers' | 'composed';
 }
 
@@ -22,12 +24,10 @@ interface PianoContent {
   styleUrl: './piano.component.scss'
 })
 export class PianoComponent {
-  activeTab: 'covers' | 'composed' = 'covers';
+  activeTab: 'covers' | 'composed' = 'composed';
   selectedContent: PianoContent | null = null;
   showModal = false;
 
-
-  // Sample piano content data - replace with your actual content
   pianoContent: PianoContent[] = [
     // Piano Covers
     // {
@@ -97,6 +97,16 @@ export class PianoComponent {
     // Composed Pieces
     {
       id: 6,
+      title: 'Second Hand',
+      caption: "My first acutal composition. The piece is about the constant anxiety of falling behind and trying to catch up to other people. The piano left hand (at 60 bpm at the beginning and end) almost acts like the second hand of a clock, hence the name Second Hand. It's also kind of a double entendre as I feel that I'm always trying to get to places people have already been.",
+      audioUrl: 'assets/piano/second-hand.mp3',
+      pdfUrl: 'assets/piano/second-hand.pdf',
+      thumbnailUrl: 'assets/piano/second-hand.png',
+      type: 'audio',
+      category: 'composed'
+    },
+    {
+      id: 7,
       title: 'Frost Whale',
       caption: 'My first LoFi. I always wanted to try music production and LoFi, so this was my first creation when I was messing around in GarageBand (the other softwares are too expensive sadge).',
       videoUrl: 'assets/piano/frost-whale.MOV',
@@ -105,14 +115,14 @@ export class PianoComponent {
       category: 'composed'
     },
     {
-      id: 7,
+      id: 8,
       title: 'Late Night Highway',
       caption: 'I created this one the same day that I made Frost Whale, expect I knew I wanted to try out some sound effects and pre-recorded voices, so this was the concoction of that.',
       videoUrl: 'assets/piano/late-night-highway.mov',
       thumbnailUrl: 'assets/piano/late-night-highway.png',
       type: 'video',
       category: 'composed'
-    }
+    }    
   ];
 
   constructor(private router: Router, private gameStateService: GameStateService, private sanitizer: DomSanitizer) {}

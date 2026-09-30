@@ -24,13 +24,19 @@ export class GuitarComponent {
   selectedContent: GuitarContent | null = null;
   showModal = false;
 
-
-  // Sample guitar content data - replace with your actual content
   guitarContent: GuitarContent[] = [
     // {
     //   id: 1,
     //   title: 'Blue by Yung Kai Cover',
     //   caption: 'Cover of Blue by Yung Kai.',
+    //   videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+    //   thumbnailUrl: 'https://via.placeholder.com/400x600/ff6b6b/ffffff?text=Classical',
+    //   type: 'video'
+    // }
+    // {
+    //   id: 1,
+    //   title: 'Walls by Chase Atlantic Cover',
+    //   caption: 'Cover of Walls by Chase Atlantic.',
     //   videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
     //   thumbnailUrl: 'https://via.placeholder.com/400x600/ff6b6b/ffffff?text=Classical',
     //   type: 'video'
