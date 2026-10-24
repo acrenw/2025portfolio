@@ -122,7 +122,17 @@ export class PianoComponent {
       thumbnailUrl: 'assets/piano/late-night-highway.png',
       type: 'video',
       category: 'composed'
-    }    
+    },
+    {
+      id: 9,
+      title: 'Doing Alright',
+      caption: 'A composition I wrote for MUSIC 376.',
+      audioUrl: 'assets/piano/doing-alright.mp3',
+      pdfUrl: 'assets/piano/doing-alright.pdf',
+      thumbnailUrl: 'assets/piano/doing-alright.png',
+      type: 'audio',
+      category: 'composed'
+    }
   ];
 
   constructor(private router: Router, private gameStateService: GameStateService, private sanitizer: DomSanitizer) {}
